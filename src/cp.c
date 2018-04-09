@@ -1,11 +1,11 @@
 #include "cp.h"
 
-void copy_file(const char *src_path, const char *dst_path) {
+enum CP_ERROR copy_file(const char *src_path, const char *dst_path) {
 	FILE *src_file = fopen(src_path, "rb");
 
 	if (src_file == NULL) {
 		printf("Error opening file...\n");
-		return;
+		return ERR_OPEN;
 	}
 
 	fseek(src_file, 0, SEEK_END);
@@ -16,14 +16,14 @@ void copy_file(const char *src_path, const char *dst_path) {
 
 	if (fread(buffer, 1, size, src_file) != size) {
 		printf("Error reading file...\n");
-		return;
+		return ERR_READ;
 	}
 
 	FILE *dst_file  = fopen(dst_path, "wb");
 
 	if (dst_file == NULL) {
 		printf("Error creating file...\n");
-		return;
+		return ERR_WRITE;
 	}
 
 	fwrite(buffer, 1, size, dst_file);
@@ -32,4 +32,6 @@ void copy_file(const char *src_path, const char *dst_path) {
 	fclose(dst_file);
 
 	free(buffer);
+
+	return NO_ERR;
 }
