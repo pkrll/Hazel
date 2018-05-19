@@ -15,6 +15,4 @@ run: $(EXECUTABLE)
 	./$(EXECUTABLE) --new
 
 clean:
-	rm -rf build/*.o
 	rm -rf bin/*
-	rm -rf bin/.editorconfig
