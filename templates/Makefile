@@ -1,7 +1,7 @@
 CC=gcc
 CCFLAGS=-g -Wall -pedantic
 
-EXECUTABLE=bin/hazel
+EXECUTABLE=bin/__PROJECTNAME__
 
 # Source & object files
 SOURCES = $(shell find src -type f -name '*.c')

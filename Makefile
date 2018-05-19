@@ -1,22 +1,18 @@
-CC=gcc
-CCFLAGS=-g -Wall -pedantic
+SC=swiftc
 
 EXECUTABLE=bin/hazel
 
 # Source & object files
-SOURCES = $(shell find src -type f -name '*.c')
+SOURCES = $(shell find src -type f -name '*.swift')
 OBJECTS = $(patsubst src/%.c, build/%.o, $(SOURCES))
 
-all: $(OBJECTS) $(EXECUTABLE)
+all: $(EXECUTABLE)
 
-build/%.o: src/%.c
-	$(CC) $(CCFLAGS) -c $< -o $@
-
-$(EXECUTABLE): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $@
+$(EXECUTABLE): $(SOURCES)
+	swiftc $^ -o $@
 
 run: $(EXECUTABLE)
-	$(EXECUTABLE) --new
+	./$(EXECUTABLE) --new
 
 clean:
 	rm -rf build/*.o
