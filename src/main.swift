@@ -1,2 +1,1 @@
-let hazel = Hazel();
-hazel.run();
+Hazel().run();
