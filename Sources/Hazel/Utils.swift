@@ -6,7 +6,7 @@ struct Utils {
 	}
 
 	static func promptUser(withQuery: String, withChoices: [String]) -> String? {
-
+		return ""
 	}
 
 }

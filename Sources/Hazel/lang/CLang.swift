@@ -8,11 +8,10 @@ struct CLang: Lang {
 	let generateMakefile: Bool = false;
 	let generateEditorconfig: Bool = false;
 
-	init(appName: String, version: String) {
-		self.appName = appName
-		self.version = version
-		self.generate
-	}
+	// init(appName: String, version: String) {
+	// 	self.appName = appName
+	// 	self.version = version
+	// }
 
 
 
