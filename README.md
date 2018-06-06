@@ -1,6 +1,14 @@
 # Hazel
 
-**Hazel** is a command line tool with the goal of lessening the hassle of setting up a project structure.
+**Hazel** is a command line tool that helps you start a new project faster -- by setting up the structure and generating common files.
+
+- [x] Support for C projects
+- [ ] Support for C++ projects
+- [ ] Support for Swift projects
+- [ ] Support for Java projects
+- [ ] Support for Erlang projects
+- [ ] Support for Erlang projects
+- [ ] Generate git repository
 
 ### Installation
 
@@ -12,7 +20,7 @@ $ cd Hazel
 $ make install
 ```
 
-This will install **Hazel** in ``/usr/local/bin``.
+This will install **Hazel** in ``/usr/local/bin``, along with its templates files in ``~/.hazel``.
 
 ### Usage
 
