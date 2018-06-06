@@ -5,7 +5,7 @@ EXECUTABLE=bin/__PROJECTNAME__
 
 # Source & object files
 SOURCES = $(shell find src -type f -name '*.c')
-OBJECTS = $(patsubst src/%.c, build/%.o, $(SOURCES))
+OBJECTS = $(patsubst src/%.c, obj/%.o, $(SOURCES))
 
 all: $(OBJECTS) $(EXECUTABLE)
 
@@ -16,8 +16,8 @@ $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $@
 
 run: $(EXECUTABLE)
-	.$(EXECUTABLE) --new
+	.$(EXECUTABLE)
 
 clean:
-	rm -rf build/*.o
+	rm -rf obj/*.o
 	rm -rf bin/*
