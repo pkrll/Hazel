@@ -7,7 +7,6 @@
 - [ ] Support for Swift projects
 - [ ] Support for Java projects
 - [ ] Support for Erlang projects
-- [ ] Support for Erlang projects
 - [ ] Generate git repository
 
 ### Installation
@@ -53,7 +52,3 @@ Usage: hazel [options]
   -v, --version:
       Print version information and exit
 ```
-
-##### Language support
-
-**Hazel** currently only creates directory structures and Makefiles for ``C`` projects.
