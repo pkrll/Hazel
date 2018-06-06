@@ -20,7 +20,7 @@ let package = Package(
 		),
 		.testTarget(
 			name: "HazelTests",
-			dependencies: ["Hazel"]
+			dependencies: ["HazelCore"]
 		)
 	]
 )
