@@ -2,25 +2,27 @@ import Foundation
 
 struct Hazel {
 
-	let appName = "Hazel"
-	let version = "1.0.0"
-	let console = Console()
-
 	let options: CommandLineOptions!
 
 	init(withOptions options: CommandLineOptions) {
 		self.options = options
-		self.console.write(message: "Initializing \(self.appName) \(self.version)...")
-		self.console.write(message: "Project language is set to \(options.Language.rawValue)\n")
 	}
 
 	public func run() {
-		let _ = Generator(options)
+		let generator = Generator()
+
+		do {
+			try generator.createProject(for: self.options.ProjectType)
+			if self.options.SkipMake == false { try generator.generateMakefile() }
+			if self.options.SkipConf == false { try generator.generateEditorconfig() }
+		} catch {
+			self.forceQuit(error.localizedDescription)
+		}
 	}
 
 	private func forceQuit(_ message: String) {
-		let message = "An error occurred: \(message) Terminating \(self.appName)"
-		self.console.write(message: message, ofType: .error)
+		let message = "An error occurred: \(message)"
+		Console.write(message: message, ofType: .error)
 		exit(0)
 	}
 
