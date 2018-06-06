@@ -10,7 +10,7 @@ build:
 	swift build
 
 run: $(EXECUTABLE)
-	./$(EXECUTABLE) --new
+	./$(EXECUTABLE) --new c
 
 clean:
 	rm -rf bin/*
