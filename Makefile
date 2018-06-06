@@ -8,6 +8,9 @@ DEBUGDIR=.build/debug
 build:
 	$(SC) build --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
 
+test:
+	$(SC) test --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
+
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
 	mkdir $(CONFIGDIR)
