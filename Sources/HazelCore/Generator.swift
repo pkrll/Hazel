@@ -3,6 +3,8 @@
 // Created by Ardalan Samimi on 2018-06-06
 //
 import Foundation
+import ConsoleIO
+import HazelSupport
 
 struct Generator {
 

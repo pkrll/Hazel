@@ -5,12 +5,13 @@
 import Foundation
 import Rainbow
 import CommandLineKit
+import HazelSupport
 
-internal typealias CommandLineOptions = (ProjectType: ProjectType, SkipMake: Bool, SkipConf: Bool)
+public typealias CommandLineOptions = (ProjectType: ProjectType, SkipMake: Bool, SkipConf: Bool)
 
-final class Console {
+public final class Console {
 
-	internal static func parseArguments() -> CommandLineOptions {
+	public static func parseArguments() -> CommandLineOptions {
 		let commandline = CommandLineKit.CommandLine()
 
 		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "Choose language for project: [c|c++|swift|java|erlang]")
@@ -53,7 +54,7 @@ final class Console {
 		return (optionGenerate.value!, optionSkipMake.value, optionSkipConf.value)
 	}
 
-	internal static func write(message: String, ofType type: ConsoleOutputType = .standard) {
+	public static func write(message: String, ofType type: ConsoleOutputType = .standard) {
 		let message = (type == .standard) ? message.blue : message.red
 		print(message)
 	}

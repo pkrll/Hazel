@@ -1,6 +1,6 @@
 // Output type
 
-enum ConsoleOutputType {
+public enum ConsoleOutputType {
 	case standard
 	case error
 }

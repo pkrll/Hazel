@@ -1,10 +1,11 @@
 import Foundation
+import ConsoleIO
 
-struct Hazel {
+public struct Hazel {
 
 	let options: CommandLineOptions!
 
-	init(withOptions options: CommandLineOptions) {
+	public init(withOptions options: CommandLineOptions) {
 		self.options = options
 	}
 
