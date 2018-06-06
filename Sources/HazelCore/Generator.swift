@@ -8,8 +8,10 @@ struct Generator {
 
 	let fileManager: FileManager
 	let projectName: String
+	let silentMode: Bool
 
-	init() {
+	init(silentMode: Bool) {
+		self.silentMode  = silentMode
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
 	}
@@ -33,7 +35,7 @@ struct Generator {
 	private func createDirectory(atPath path: String) throws {
 		let folderURL = URL(fileURLWithPath: path)
 		try self.fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
-		Console.write(message: "Created \(path)")
+		if !self.silentMode { Console.write(message: "Created \(path)") }
 	}
 
 	private func generateFile(_ file: String) throws {
@@ -58,7 +60,7 @@ struct Generator {
 		let fileData = fileContents.data(using: .utf8)
 
 		try fileData!.write(to: URL(fileURLWithPath: destination))
-		Console.write(message: "Created \(destination)")
+		if !self.silentMode { Console.write(message: "Created \(destination)") }
 	}
 
 	private func getLanguage(from: ProjectType) -> Language {

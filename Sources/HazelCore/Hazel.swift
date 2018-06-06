@@ -3,13 +3,14 @@ import Foundation
 public struct Hazel {
 
 	let options: CommandLineOptions!
+	var silentMode: Bool = false
 
 	public init(withOptions options: CommandLineOptions) {
 		self.options = options
 	}
 
 	public func run() {
-		let generator = Generator()
+		let generator = Generator(silentMode: self.silentMode)
 
 		do {
 			try generator.createProject(for: self.options.ProjectType)
