@@ -1,17 +1,19 @@
-SC=swiftc
+SC=swift
 
-EXECUTABLE=.build/x86_64-apple-macosx10.10/debug/Hazel
-
-# Source & object files
-SOURCES = $(shell find src -type f -name '*.swift')
-OBJECTS = $(patsubst src/%.c, build/%.o, $(SOURCES))
+CONFIGDIR=~/.hazel
+BINARYDIR=/usr/local/bin
+RELEASEDIR=.build/release
+DEBUGDIR=.build/debug
 
 build:
-	swift build
+	$(SC) build --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
 
-run: $(EXECUTABLE)
-	./$(EXECUTABLE) --new c
+install:
+	$(SC) build --configuration release -Xswiftc -static-stdlib
+	mkdir $(CONFIGDIR)
+	cp -r templates $(CONFIGDIR)
+	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
 
 clean:
 	rm -rf bin/*
-	rm -rf .build/x86_64-apple-macosx10.10
+	rm -rf .build/
