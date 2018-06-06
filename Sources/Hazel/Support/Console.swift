@@ -13,11 +13,11 @@ final class Console {
 	internal static func parseArguments() -> CommandLineOptions {
 		let commandline = CommandLineKit.CommandLine()
 
-		let optionGenerate = EnumOption<ProjectType>(shortFlag: "n", longFlag: "new", required: true, helpMessage: "Creates an application skeleton: [c|c++|swift|java|erlang]")
+		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "Choose language for project: [c|c++|swift|java|erlang]")
 		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "Do not generate Makefile")
 		let optionSkipConf = BoolOption(longFlag: "no-config", helpMessage: "Do not generate .editorconfig")
-		let optionViewHelp = BoolOption(shortFlag: "h", longFlag: "help", helpMessage: "Prints a help message and exit")
-		let optionVersion = BoolOption(shortFlag: "v", longFlag: "version", helpMessage: "Prints version information and exit")
+		let optionViewHelp = BoolOption(shortFlag: "h", longFlag: "help", helpMessage: "Print help message and exit")
+		let optionVersion = BoolOption(shortFlag: "v", longFlag: "version", helpMessage: "Print version information and exit")
 
 		commandline.addOptions(optionGenerate, optionSkipMake, optionSkipConf, optionViewHelp, optionVersion)
 
