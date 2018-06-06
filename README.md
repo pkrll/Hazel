@@ -42,16 +42,16 @@ Created .editorconfig
 
 ```bash
 Usage: hazel [options]
-  -n, --new:
-      Creates an application skeleton: [c|c++|swift|java|erlang]
+  -t, --type:
+      Choose language for project: [c|c++|swift|java|erlang]
   --no-makefile:
       Do not generate Makefile
   --no-config:
       Do not generate .editorconfig
   -h, --help:
-      Prints a help message and exit
+      Print help message and exit
   -v, --version:
-      Prints version information and exit
+      Print version information and exit
 ```
 
 ##### Language support
