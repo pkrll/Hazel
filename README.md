@@ -28,7 +28,7 @@ Run **Hazel** inside the root folder for your project to generate the directory 
 
 ```bash
 $ mkdir SomeProject
-$ hazel --new c
+$ hazel --type c
 
 Created bin
 Created obj
