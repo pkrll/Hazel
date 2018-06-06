@@ -16,9 +16,10 @@ final class Console {
 		let optionGenerate = EnumOption<ProjectType>(shortFlag: "n", longFlag: "new", required: true, helpMessage: "Creates an application skeleton: [c|c++|swift|java|erlang]")
 		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "Do not generate Makefile")
 		let optionSkipConf = BoolOption(longFlag: "no-config", helpMessage: "Do not generate .editorconfig")
-		let optionViewHelp = BoolOption(shortFlag: "h", longFlag: "help", helpMessage: "Prints a help message")
+		let optionViewHelp = BoolOption(shortFlag: "h", longFlag: "help", helpMessage: "Prints a help message and exit")
+		let optionVersion = BoolOption(shortFlag: "v", longFlag: "version", helpMessage: "Prints version information and exit")
 
-		commandline.addOptions(optionGenerate, optionSkipMake, optionSkipConf, optionViewHelp)
+		commandline.addOptions(optionGenerate, optionSkipMake, optionSkipConf, optionViewHelp, optionVersion)
 
 		commandline.formatOutput = { s, type in
 		  var str: String
@@ -40,7 +41,12 @@ final class Console {
 		do {
 			try commandline.parse()
 		} catch {
-			commandline.printUsage(error)
+			if optionVersion.value {
+				Console.write(message: "\(Application.appName) version \(Application.version)")
+			} else {
+				commandline.printUsage(error)
+			}
+
 			exit(EX_USAGE)
 		}
 
