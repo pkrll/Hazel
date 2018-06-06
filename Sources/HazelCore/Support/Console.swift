@@ -5,7 +5,6 @@
 import Foundation
 import Rainbow
 import CommandLineKit
-import HazelSupport
 
 public typealias CommandLineOptions = (ProjectType: ProjectType, SkipMake: Bool, SkipConf: Bool)
 
