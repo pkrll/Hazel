@@ -2,11 +2,46 @@ import Foundation
 
 struct Hazel {
 
-	var appName: String?
-	var version: String?
+	let appName = "Hazel"
+	let version = "1.0.0"
+	let console = Console()
 
-	public func run() {
-		print("Running hazel version 0.0.1...")
+	init() {
+		self.console.write(message: "Initializing \(self.appName)...")
+		self.console.write(message: "Version: \(self.version)")
+	}
+
+	public func main(_ argc: Int32, _ argv: [String]) {
+		guard argc > 1 else {
+			self.exit("No arguments given. See ")
+			return
+		}
+
+		let commands = self.parse(arguments: Array(argv[1...]))
+		self.execute(commands)
+	}
+
+	private func parse(arguments: [String]) -> [Commands] {
+		var commands = [Commands]()
+
+		for argument in arguments {
+			if let command = Commands(argument) {
+				commands.append(command)
+			}
+		}
+
+		return commands
+	}
+
+	private func execute(_ commands: [Commands]) {
+		guard commands.count > 0 else {
+			self.console.write(message: "Invalid arguments given.")
+			return
+		}
+	}
+
+	private func exit(_ message: String) {
+		self.console.write(message: message, ofType: .error)
 	}
 
 }

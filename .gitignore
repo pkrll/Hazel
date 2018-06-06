@@ -52,5 +52,7 @@ Mkfile.old
 dkms.conf
 
 .DS_Store
-build/*
+.build
 bin/*
+
+Package.resolved
