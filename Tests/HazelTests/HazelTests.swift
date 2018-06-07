@@ -32,30 +32,10 @@ final class HazelTests: XCTestCase {
 		try? fileManager.removeItem(atPath: tmpPath)
 	}
 
-	func parse(_ arguments: [String], withOptions options: [Option]) throws {
-		let commandline = CommandLineKit.CommandLine(arguments: arguments)
-		commandline.addOptions(options)
-
-		do {
-			try commandline.parse()
-		} catch {
-			XCTFail("Failed to parse options: \(error)")
-		}
-	}
-
 	func testCProjectWithMakeAndConf() {
-		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "")
-		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "")
-		let optionSkipConf = BoolOption(longFlag: "no-config", helpMessage: "")
+		let options = Console.parseArguments([ "HazelTests", "--type", "c" ])
 
-		do {
-			try self.parse([ "HazelTests", "--type", "c" ], withOptions: [optionGenerate, optionSkipMake, optionSkipConf])
-			XCTAssertEqual(optionGenerate.value, .C)
-		} catch {
-			XCTFail("Failed to parse --type option: \(error)")
-		}
-
-		var hazel = Hazel(withOptions: (optionGenerate.value!, false, false))
+		var hazel = Hazel(withOptions: options)
 		hazel.silentMode = true
 		hazel.run()
 
@@ -65,22 +45,12 @@ final class HazelTests: XCTestCase {
 		XCTAssertTrue(fileManager.fileExists(atPath: "tests"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Makefile"))
 		XCTAssertTrue(fileManager.fileExists(atPath: ".editorconfig"))
-
 	}
 
 	func testCProjectWithMakeNoConf() {
-		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "")
-		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "")
-		let optionSkipConf = BoolOption(longFlag: "no-config", helpMessage: "")
+		let options = Console.parseArguments([ "HazelTests", "--type", "c", "--no-config" ])
 
-		do {
-			try self.parse([ "HazelTests", "--type", "c", "--no-config" ], withOptions: [optionGenerate, optionSkipMake, optionSkipConf])
-			XCTAssertTrue(optionSkipConf.value, "Failed to parse no-config option")
-		} catch {
-			XCTFail("Failed to parse --type option: \(error)")
-		}
-
-		var hazel = Hazel(withOptions: (optionGenerate.value!, optionSkipMake.value, optionSkipConf.value))
+		var hazel = Hazel(withOptions: options)
 		hazel.silentMode = true
 		hazel.run()
 
@@ -93,19 +63,9 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testCProjectWithNoMakeNoConf() {
-		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "")
-		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "")
-		let optionSkipConf = BoolOption(longFlag: "no-config", helpMessage: "")
+		let options = Console.parseArguments([ "HazelTests", "--type", "c", "--no-makefile", "--no-config" ])
 
-		do {
-			try self.parse([ "HazelTests", "--type", "c", "--no-makefile", "--no-config" ], withOptions: [optionGenerate, optionSkipMake, optionSkipConf])
-			XCTAssertTrue(optionSkipMake.value, "Failed to parse no-config option")
-			XCTAssertTrue(optionSkipConf.value, "Failed to parse no-config option")
-		} catch {
-			XCTFail("Failed to parse --type option: \(error)")
-		}
-
-		var hazel = Hazel(withOptions: (optionGenerate.value!, optionSkipMake.value, optionSkipConf.value))
+		var hazel = Hazel(withOptions: options)
 		hazel.silentMode = true
 		hazel.run()
 
