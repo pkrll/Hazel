@@ -13,7 +13,7 @@ test:
 
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
-	mkdir $(CONFIGDIR)
+	mkdir -p $(CONFIGDIR)
 	cp -r templates $(CONFIGDIR)
 	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
 
