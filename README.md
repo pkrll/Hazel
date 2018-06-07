@@ -1,5 +1,4 @@
 [![Build Status](https://travis-ci.org/pkrll/Hazel.svg?branch=master)](https://travis-ci.org/pkrll/Hazel)
-# Hazel
 
 <img src=".assets/hazel.png" data-canonical-src=".assets/hazel.png" />
 
