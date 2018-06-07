@@ -15,9 +15,11 @@ before_test:
 
 test: before_test
 	$(SC) test --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
+	rm -rf /tmp/hazel
 
 codecov: before_test
 	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration debug
+	rm -rf /tmp/hazel
 
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
