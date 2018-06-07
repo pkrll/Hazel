@@ -14,7 +14,7 @@ test:
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
 	mkdir -p $(CONFIGDIR)
-	cp -r templates $(CONFIGDIR)
+	cp -r .assets/templates $(CONFIGDIR)
 	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
 
 clean:
