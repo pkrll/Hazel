@@ -1,0 +1,7 @@
+.git/
+.build/
+build/
+Hazel.xcodeproj/
+!.build/checkouts/
+!.build/repositories/
+!.build/workspace-state.json
