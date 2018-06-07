@@ -54,12 +54,13 @@ struct Generator {
 		if !self.silentMode { Console.write(message: "Created \(destination)") }
 	}
 
-	private func getLanguage(from: ProjectType) -> Language {
-		switch from {
+	private func getLanguage(from project: ProjectType) -> Language {
+		switch project {
 		case .C:
 			return LanguageC()
 		default:
-			return LanguageC()
+			Console.write(message: "No support yet added for \(project.rawValue) projects.", ofType: .error)
+			exit(1)
 		}
 	}
 
