@@ -11,7 +11,7 @@ public typealias CommandLineOptions = (ProjectType: ProjectType, SkipMake: Bool,
 public final class Console {
 
 	public static func parseArguments() -> CommandLineOptions {
-		let commandline = CommandLineKit.CommandLine()
+		let commandLine = Console.commandLine()
 
 		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "Choose language for project: [c|c++|swift|java|erlang]")
 		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "Do not generate Makefile")
@@ -19,9 +19,34 @@ public final class Console {
 		let optionViewHelp = BoolOption(shortFlag: "h", longFlag: "help", helpMessage: "Print help message and exit")
 		let optionVersion = BoolOption(shortFlag: "v", longFlag: "version", helpMessage: "Print version information and exit")
 
-		commandline.addOptions(optionGenerate, optionSkipMake, optionSkipConf, optionViewHelp, optionVersion)
+		commandLine.addOptions(optionGenerate, optionSkipMake, optionSkipConf, optionViewHelp, optionVersion)
 
-		commandline.formatOutput = { s, type in
+		do {
+			try commandLine.parse()
+		} catch {
+			if optionVersion.value {
+				Console.write(message: "\(Application.appName) version \(Application.version)")
+			} else if optionViewHelp.value {
+				commandLine.printUsage()
+			} else {
+				commandLine.printUsage(error)
+			}
+
+			exit(EX_USAGE)
+		}
+
+		return (optionGenerate.value!, optionSkipMake.value, optionSkipConf.value)
+	}
+
+	public static func write(message: String, ofType type: ConsoleOutputType = .standard) {
+		let message = (type == .standard) ? message.blue : message.red
+		print(message)
+	}
+
+	private static func commandLine() -> CommandLineKit.CommandLine {
+		let commandLine = CommandLineKit.CommandLine()
+
+		commandLine.formatOutput = { s, type in
 		  var str: String
 
 		  switch(type) {
@@ -35,27 +60,10 @@ public final class Console {
 		    str = s
 		  }
 
-		  return commandline.defaultFormat(s: str, type: type)
+		  return commandLine.defaultFormat(s: str, type: type)
 		}
 
-		do {
-			try commandline.parse()
-		} catch {
-			if optionVersion.value {
-				Console.write(message: "\(Application.appName) version \(Application.version)")
-			} else {
-				commandline.printUsage(error)
-			}
-
-			exit(EX_USAGE)
-		}
-
-		return (optionGenerate.value!, optionSkipMake.value, optionSkipConf.value)
-	}
-
-	public static func write(message: String, ofType type: ConsoleOutputType = .standard) {
-		let message = (type == .standard) ? message.blue : message.red
-		print(message)
+		return commandLine
 	}
 
 }
