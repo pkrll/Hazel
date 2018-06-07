@@ -7,7 +7,7 @@ import Foundation
 enum Application {
 
 	static let appName: String = "Hazel"
-	static let version: String = "1.2.1"
+	static let version: String = "0.1.0"
 
 	enum Paths {
 		#if DEBUG
