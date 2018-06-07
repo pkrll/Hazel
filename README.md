@@ -5,10 +5,7 @@
 **Hazel** is a command line tool that helps you start a new project faster -- by setting up the structure and generating common files.
 
 - [x] Support for C projects
-- [ ] Support for C++ projects
-- [ ] Support for Swift projects
-- [ ] Support for Java projects
-- [ ] Support for Erlang projects
+- [ ] Support for even more languages
 - [ ] Generate git repository
 
 ### Installation
