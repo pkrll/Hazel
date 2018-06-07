@@ -71,70 +71,70 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6ADCDAC220C95E1F00F7777A /* PBXContainerItemProxy */ = {
+		6A7D33DF20C969220016E979 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "CommandLine::CommandLineKit";
+			remoteInfo = CommandLineKit;
+		};
+		6A7D33E020C969220016E979 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = OBJ_1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = "Rainbow::Rainbow";
+			remoteInfo = Rainbow;
+		};
+		6A7D33E120C969220016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Hazel::HazelCore";
 			remoteInfo = HazelCore;
 		};
-		6ADCDAC320C95E1F00F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E220C969220016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "CommandLine::CommandLineKit";
 			remoteInfo = CommandLineKit;
 		};
-		6ADCDAC420C95E1F00F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E320C969220016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Rainbow::Rainbow";
 			remoteInfo = Rainbow;
 		};
-		6ADCDAC520C95E1F00F7777A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "CommandLine::CommandLineKit";
-			remoteInfo = CommandLineKit;
-		};
-		6ADCDAC620C95E1F00F7777A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = OBJ_1 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = "Rainbow::Rainbow";
-			remoteInfo = Rainbow;
-		};
-		6ADCDAC720C95E1F00F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E420C969220016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Hazel::HazelCore";
 			remoteInfo = HazelCore;
 		};
-		6ADCDAC820C95E1F00F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E520C969220016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "CommandLine::CommandLineKit";
 			remoteInfo = CommandLineKit;
 		};
-		6ADCDAC920C95E1F00F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E620C969220016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "Rainbow::Rainbow";
 			remoteInfo = Rainbow;
 		};
-		6ADCDACA20C95E2100F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E720C969240016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = "CommandLine::CommandLineKit";
 			remoteInfo = CommandLineKit;
 		};
-		6ADCDACB20C95E2100F7777A /* PBXContainerItemProxy */ = {
+		6A7D33E820C969240016E979 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = OBJ_1 /* Project object */;
 			proxyType = 1;
@@ -334,11 +334,11 @@
 		OBJ_46 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				"CommandLine::CommandLineKit::Product" /* CommandLineKit.framework */,
-				"Rainbow::Rainbow::Product" /* Rainbow.framework */,
-				"Hazel::Hazel::Product" /* Hazel */,
-				"Hazel::HazelTests::Product" /* HazelTests.xctest */,
 				"Hazel::HazelCore::Product" /* HazelCore.framework */,
+				"CommandLine::CommandLineKit::Product" /* CommandLineKit.framework */,
+				"Hazel::HazelTests::Product" /* HazelTests.xctest */,
+				"Hazel::Hazel::Product" /* Hazel */,
+				"Rainbow::Rainbow::Product" /* Rainbow.framework */,
 			);
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -633,52 +633,52 @@
 		OBJ_102 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "CommandLine::CommandLineKit" /* CommandLineKit */;
-			targetProxy = 6ADCDAC320C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33DF20C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_103 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = 6ADCDAC420C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E020C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_114 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Hazel::HazelTests" /* HazelTests */;
-			targetProxy = 6ADCDACB20C95E2100F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E820C969240016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_126 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Hazel::HazelCore" /* HazelCore */;
-			targetProxy = 6ADCDAC720C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E420C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_127 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "CommandLine::CommandLineKit" /* CommandLineKit */;
-			targetProxy = 6ADCDAC820C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E520C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_128 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = 6ADCDAC920C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E620C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "CommandLine::CommandLineKit" /* CommandLineKit */;
-			targetProxy = 6ADCDACA20C95E2100F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E720C969240016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_82 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Hazel::HazelCore" /* HazelCore */;
-			targetProxy = 6ADCDAC220C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E120C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_84 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "CommandLine::CommandLineKit" /* CommandLineKit */;
-			targetProxy = 6ADCDAC520C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E220C969220016E979 /* PBXContainerItemProxy */;
 		};
 		OBJ_85 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = "Rainbow::Rainbow" /* Rainbow */;
-			targetProxy = 6ADCDAC620C95E1F00F7777A /* PBXContainerItemProxy */;
+			targetProxy = 6A7D33E320C969220016E979 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -828,6 +828,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_SWIFT_FLAGS = "-DXcode";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-DDEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
@@ -1029,7 +1030,7 @@
 				OBJ_107 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_111 /* Build configuration list for PBXAggregateTarget "HazelPackageTests" */ = {
 			isa = XCConfigurationList;
@@ -1038,7 +1039,7 @@
 				OBJ_113 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_116 /* Build configuration list for PBXNativeTarget "HazelTests" */ = {
 			isa = XCConfigurationList;
@@ -1047,7 +1048,7 @@
 				OBJ_118 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_129 /* Build configuration list for PBXNativeTarget "Rainbow" */ = {
 			isa = XCConfigurationList;
@@ -1056,7 +1057,7 @@
 				OBJ_131 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_146 /* Build configuration list for PBXNativeTarget "RainbowPackageDescription" */ = {
 			isa = XCConfigurationList;
@@ -1065,7 +1066,7 @@
 				OBJ_148 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_2 /* Build configuration list for PBXProject "Hazel" */ = {
 			isa = XCConfigurationList;
@@ -1074,7 +1075,7 @@
 				OBJ_4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_53 /* Build configuration list for PBXAggregateTarget "CommandLine" */ = {
 			isa = XCConfigurationList;
@@ -1083,7 +1084,7 @@
 				OBJ_55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_58 /* Build configuration list for PBXNativeTarget "CommandLineKit" */ = {
 			isa = XCConfigurationList;
@@ -1092,7 +1093,7 @@
 				OBJ_60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_67 /* Build configuration list for PBXNativeTarget "CommandLinePackageDescription" */ = {
 			isa = XCConfigurationList;
@@ -1101,7 +1102,7 @@
 				OBJ_69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_73 /* Build configuration list for PBXNativeTarget "Hazel" */ = {
 			isa = XCConfigurationList;
@@ -1110,7 +1111,7 @@
 				OBJ_75 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		OBJ_87 /* Build configuration list for PBXNativeTarget "HazelCore" */ = {
 			isa = XCConfigurationList;
@@ -1119,7 +1120,7 @@
 				OBJ_89 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
