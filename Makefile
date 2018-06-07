@@ -32,6 +32,5 @@ docker:
 	docker run --rm hazel
 
 clean:
-	rm -rf bin/*
 	rm -rf .build/
-	rm -rf xcov_report/*
+	rm -rf xcov_report
