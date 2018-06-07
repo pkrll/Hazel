@@ -7,12 +7,9 @@ class Generator: Language {
 
 	let fileManager: FileManager
 	let projectName: String
-	let silentMode: Bool
-
 	var skipFiles: [String] = []
 
-	init(silentMode: Bool) {
-		self.silentMode  = silentMode
+	init() {
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
 	}
@@ -31,7 +28,7 @@ class Generator: Language {
 	private func createDirectory(atPath path: String) throws {
 		let folderURL = URL(fileURLWithPath: path)
 		try self.fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
-		if !self.silentMode { Console.write(message: "Created \(path)") }
+		Console.default.write(message: "Created \(path)")
 	}
 
 	private func createDefaultFiles() throws {
@@ -50,7 +47,7 @@ class Generator: Language {
 		let fileData = fileContents.data(using: .utf8)
 
 		try fileData!.write(to: URL(fileURLWithPath: destination))
-		if !self.silentMode { Console.write(message: "Created \(destination)") }
+		Console.default.write(message: "Created \(destination)")
 	}
 
 }

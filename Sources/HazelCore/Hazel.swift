@@ -24,16 +24,16 @@ public struct Hazel {
 
 	private func forceQuit(_ message: String) {
 		let message = "An error occurred: \(message)"
-		Console.write(message: message, ofType: .error)
+		Console.default.write(message: message)
 		exit(1)
 	}
 
 	private func getGenerator(for projectType: ProjectType) -> Generator? {
 		switch projectType {
 		case .C:
-			return LanguageC(silentMode: self.silentMode)
+			return LanguageC()
 		case .Swift:
-			return LanguageSwift(silentMode: self.silentMode)
+			return LanguageSwift()
 		default:
 			self.forceQuit("No support yet added for \(projectType.rawValue) projects.")
 		}

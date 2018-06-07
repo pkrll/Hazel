@@ -10,8 +10,11 @@ public typealias CommandLineOptions = (ProjectType: ProjectType, SkipMake: Bool,
 
 public final class Console {
 
-	public static func parseArguments(_ arguments: [String]? = nil) -> CommandLineOptions {
-		let commandLine = Console.commandLine(arguments)
+	public static var `default`: Console = Console()
+	public var silentMode: Bool = false
+
+	public func parseArguments(_ arguments: [String]? = nil) -> CommandLineOptions {
+		let commandLine = self.commandLine(arguments)
 
 		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "Choose language for project: [c|c++|swift|java|erlang]")
 		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "Do not generate Makefile")
@@ -25,7 +28,7 @@ public final class Console {
 			try commandLine.parse()
 		} catch {
 			if optionVersion.value {
-				Console.write(message: "\(Application.appName) version \(Application.version)")
+				self.write(message: "\(Application.appName) version \(Application.version)")
 			} else if optionViewHelp.value {
 				commandLine.printUsage()
 			} else {
@@ -38,12 +41,13 @@ public final class Console {
 		return (optionGenerate.value!, optionSkipMake.value, optionSkipConf.value)
 	}
 
-	public static func write(message: String, ofType type: ConsoleOutputType = .standard) {
+	public func write(message: String, ofType type: ConsoleOutputType = .standard) {
+		guard self.silentMode == false else { return }
 		let message = (type == .standard) ? message.blue : message.red
 		print(message)
 	}
 
-	private static func commandLine(_ arguments: [String]? = nil) -> CommandLineKit.CommandLine {
+	private func commandLine(_ arguments: [String]? = nil) -> CommandLineKit.CommandLine {
 		let commandLine: CommandLineKit.CommandLine
 		if let arguments = arguments {
 			commandLine = CommandLineKit.CommandLine(arguments: arguments)
