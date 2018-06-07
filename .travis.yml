@@ -6,7 +6,7 @@ matrix:
       sudo: required
 script:
   - make test
-  - xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES
+  - make codecov
 before_install:
   - chmod ugo+x ./.assets/scripts/InstallSwift.sh
   - . ./.assets/scripts/InstallSwift.sh
