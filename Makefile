@@ -27,6 +27,10 @@ install:
 	cd .assets && cp -r templates $(CONFIGDIR)
 	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
 
+docker:
+	docker build --tag hazel .
+	docker run --rm hazel
+
 clean:
 	rm -rf bin/*
 	rm -rf .build/
