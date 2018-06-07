@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Hazel::HazelCore"
-               BuildableName = "HazelCore.framework"
-               BlueprintName = "HazelCore"
+               BlueprintIdentifier = "CommandLine::CommandLineKit"
+               BuildableName = "CommandLineKit.framework"
+               BlueprintName = "CommandLineKit"
                ReferencedContainer = "container:Hazel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,9 +28,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CommandLine::CommandLineKit"
-               BuildableName = "CommandLineKit.framework"
-               BlueprintName = "CommandLineKit"
+               BlueprintIdentifier = "Hazel::HazelCore"
+               BuildableName = "HazelCore.framework"
+               BlueprintName = "HazelCore"
                ReferencedContainer = "container:Hazel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -81,15 +81,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Hazel::HazelCore"
-            BuildableName = "HazelCore.framework"
-            BlueprintName = "HazelCore"
-            ReferencedContainer = "container:Hazel.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -106,9 +97,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Hazel::HazelCore"
-            BuildableName = "HazelCore.framework"
-            BlueprintName = "HazelCore"
+            BlueprintIdentifier = "CommandLine::CommandLineKit"
+            BuildableName = "CommandLineKit.framework"
+            BlueprintName = "CommandLineKit"
             ReferencedContainer = "container:Hazel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -121,15 +112,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "Hazel::HazelCore"
-            BuildableName = "HazelCore.framework"
-            BlueprintName = "HazelCore"
-            ReferencedContainer = "container:Hazel.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

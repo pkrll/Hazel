@@ -21,7 +21,7 @@ final class HazelTests: XCTestCase {
 		do {
 			try fileManager.createDirectory(at: URL(fileURLWithPath: tmpPath), withIntermediateDirectories: false)
 		} catch {
-			XCTAssertTrue(false, "Could not create temporary directory!")
+			XCTAssertTrue(false, "Could not create temporary directory \(URL(fileURLWithPath: tmpPath).path)!")
 		}
 
 		fileManager.changeCurrentDirectoryPath(tmpPath)
@@ -33,10 +33,11 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testCProjectWithMakeAndConf() {
-		let options = Console.parseArguments([ "HazelTests", "--type", "c" ])
+		let console = Console.default
+		let options = console.parseArguments([ "HazelTests", "--type", "c" ])
+		let hazel = Hazel(withOptions: options)
 
-		var hazel = Hazel(withOptions: options)
-		hazel.silentMode = true
+		console.silentMode = true
 		hazel.run()
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
@@ -48,10 +49,11 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testCProjectWithMakeNoConf() {
-		let options = Console.parseArguments([ "HazelTests", "--type", "c", "--no-config" ])
+		let console = Console.default
+		let options = console.parseArguments([ "HazelTests", "--type", "c", "--no-config" ])
+		let hazel = Hazel(withOptions: options)
 
-		var hazel = Hazel(withOptions: options)
-		hazel.silentMode = true
+		console.silentMode = true
 		hazel.run()
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
@@ -63,10 +65,11 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testCProjectWithNoMakeNoConf() {
-		let options = Console.parseArguments([ "HazelTests", "--type", "c", "--no-makefile", "--no-config" ])
+		let console = Console.default
+		let options = console.parseArguments([ "HazelTests", "--type", "c", "--no-makefile", "--no-config" ])
+		let hazel = Hazel(withOptions: options)
 
-		var hazel = Hazel(withOptions: options)
-		hazel.silentMode = true
+		console.silentMode = true
 		hazel.run()
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
