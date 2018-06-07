@@ -55,5 +55,5 @@ dkms.conf
 .build
 build/*
 bin/*
-
+xcov_report/*
 Package.resolved
