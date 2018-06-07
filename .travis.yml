@@ -2,13 +2,16 @@ matrix:
   include:
     - os: osx
       osx_image: xcode9.3
-      language: objective-c
+      language: swift
       sudo: required
 script:
   - make test
+  - xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES
 before_install:
   - chmod ugo+x ./.assets/scripts/InstallSwift.sh
   - . ./.assets/scripts/InstallSwift.sh
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 notifications:
   email:
     on_success: never
