@@ -11,6 +11,7 @@ final class HazelTests: XCTestCase {
 	static var allTests = [
 		("testCProjectWithMakeAndConf", testCProjectWithMakeAndConf),
 		("testCProjectWithMakeNoConf", testCProjectWithMakeNoConf),
+		("testCProjectWithNoMakeNoConf", testCProjectWithNoMakeNoConf),
 	]
 
 	let tmpPath = "tmp"
