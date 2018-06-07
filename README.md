@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/pkrll/Hazel.svg?branch=master)](https://travis-ci.org/pkrll/Hazel)
-
+[![codecov](https://codecov.io/gh/pkrll/Hazel/branch/master/graph/badge.svg)](https://codecov.io/gh/pkrll/Hazel)
 <img src=".assets/hazel.png" data-canonical-src=".assets/hazel.png" />
 
 **Hazel** is a command line tool that helps you start a new project faster -- by setting up the structure and generating common files.
