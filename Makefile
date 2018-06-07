@@ -1,3 +1,4 @@
+.PHONY: build test before_test install clean
 SC=swift
 
 CONFIGDIR=~/.hazel
@@ -8,8 +9,15 @@ DEBUGDIR=.build/debug
 build:
 	$(SC) build --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
 
-test:
+before_test:
+	mkdir -p /tmp/hazel
+	cd .assets && cp -r templates /tmp/hazel
+
+test: before_test
 	$(SC) test --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
+
+codecov: before_test
+	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration debug
 
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
