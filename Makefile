@@ -34,3 +34,4 @@ docker:
 clean:
 	rm -rf bin/*
 	rm -rf .build/
+	rm -rf xcov_report/*
