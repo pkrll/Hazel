@@ -4,9 +4,14 @@
 //
 import Foundation
 
-struct LanguageC: Language {
+final class LanguageC: Generator {
 
-	let directories: 	[String] = ["bin", "obj", "src", "tests"]
-	let defaultFiles: [String] = ["Makefile", ".editorconfig"]
+	override var directories: 	[String] {
+		return ["bin", "obj", "src", "tests"]
+	}
+
+	override var defaultFiles: [String] {
+		return ["Makefile", ".editorconfig"]
+	}
 
 }

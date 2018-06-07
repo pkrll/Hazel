@@ -1,14 +1,15 @@
-//
-// Generator.swift
-// Created by Ardalan Samimi on 2018-06-06
-//
 import Foundation
 
-struct Generator {
+class Generator: Language {
+
+	var directories: 	[String] { return [] }
+	var defaultFiles: [String] { return [] }
 
 	let fileManager: FileManager
 	let projectName: String
 	let silentMode: Bool
+
+	var skipFiles: [String] = []
 
 	init(silentMode: Bool) {
 		self.silentMode  = silentMode
@@ -16,20 +17,15 @@ struct Generator {
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
 	}
 
-	internal func createProject(for projectType: ProjectType) throws {
-		let directories = self.getLanguage(from: projectType).directories
+	func initProject() throws {
+		try self.createDirectories()
+		try self.createDefaultFiles()
+	}
 
-		for directory in directories {
+	private func createDirectories() throws {
+		for directory in self.directories {
 			try self.createDirectory(atPath: directory)
 		}
-	}
-
-	internal func generateMakefile() throws {
-		try self.generateFile("Makefile")
-	}
-
-	internal func generateEditorconfig() throws {
-		try self.generateFile(".editorconfig")
 	}
 
 	private func createDirectory(atPath path: String) throws {
@@ -38,9 +34,12 @@ struct Generator {
 		if !self.silentMode { Console.write(message: "Created \(path)") }
 	}
 
-	private func generateFile(_ file: String) throws {
-		let directory: String = Application.Paths.templatesPath
-		try self.copy(file: "\(directory)/\(file)", to: file)
+	private func createDefaultFiles() throws {
+		let templatesPath = Application.Paths.templatesPath
+		for file in self.defaultFiles {
+			if self.skipFiles.contains(file) { continue }
+			try self.copy(file: "\(templatesPath)/\(file)", to: file)
+		}
 	}
 
 	private func copy(file source: String, to destination: String) throws {
@@ -52,16 +51,6 @@ struct Generator {
 
 		try fileData!.write(to: URL(fileURLWithPath: destination))
 		if !self.silentMode { Console.write(message: "Created \(destination)") }
-	}
-
-	private func getLanguage(from project: ProjectType) -> Language {
-		switch project {
-		case .C:
-			return LanguageC()
-		default:
-			Console.write(message: "No support yet added for \(project.rawValue) projects.", ofType: .error)
-			exit(1)
-		}
 	}
 
 }

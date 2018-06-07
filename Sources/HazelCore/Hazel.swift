@@ -10,12 +10,13 @@ public struct Hazel {
 	}
 
 	public func run() {
-		let generator = Generator(silentMode: self.silentMode)
+		let generator = self.getGenerator(for: self.options.ProjectType)!
+
+		if self.options.SkipMake { generator.skipFiles.append("Makefile") }
+		if self.options.SkipConf { generator.skipFiles.append(".editorconfig") }
 
 		do {
-			try generator.createProject(for: self.options.ProjectType)
-			if self.options.SkipMake == false { try generator.generateMakefile() }
-			if self.options.SkipConf == false { try generator.generateEditorconfig() }
+			try generator.initProject()
 		} catch {
 			self.forceQuit(error.localizedDescription)
 		}
@@ -24,7 +25,20 @@ public struct Hazel {
 	private func forceQuit(_ message: String) {
 		let message = "An error occurred: \(message)"
 		Console.write(message: message, ofType: .error)
-		exit(0)
+		exit(1)
+	}
+
+	private func getGenerator(for projectType: ProjectType) -> Generator? {
+		switch projectType {
+		case .C:
+			return LanguageC(silentMode: self.silentMode)
+		case .Swift:
+			return LanguageSwift(silentMode: self.silentMode)
+		default:
+			self.forceQuit("No support yet added for \(projectType.rawValue) projects.")
+		}
+
+		return nil
 	}
 
 }
