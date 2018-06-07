@@ -39,16 +39,8 @@ struct Generator {
 	}
 
 	private func generateFile(_ file: String) throws {
-		var directory: String
-
-		if #available(macOS 10.12, *) {
-			directory = self.fileManager.homeDirectoryForCurrentUser.path
-		} else {
-			directory = NSHomeDirectory()
-		}
-
-		directory += "/\(Application.Paths.templates)"
-
+		let directory: String = Application.Paths.templatesPath
+		print(directory)
 		try self.copy(file: "\(directory)/\(file)", to: file)
 	}
 

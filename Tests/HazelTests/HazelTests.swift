@@ -11,6 +11,9 @@ final class HazelTests: XCTestCase {
 		let tmpPath = "tmp"
 		let fileManager = FileManager.default
 
+		var hazel = Hazel(withOptions: (ProjectType.C, false, false))
+		hazel.silentMode = true
+
 		do {
 			try fileManager.createDirectory(at: URL(fileURLWithPath: tmpPath), withIntermediateDirectories: false)
 		} catch {
@@ -19,8 +22,6 @@ final class HazelTests: XCTestCase {
 
 		fileManager.changeCurrentDirectoryPath(tmpPath)
 
-		var hazel = Hazel(withOptions: (ProjectType.C, false, false))
-		hazel.silentMode = true
 		hazel.run()
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
