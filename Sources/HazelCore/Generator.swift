@@ -40,7 +40,6 @@ struct Generator {
 
 	private func generateFile(_ file: String) throws {
 		let directory: String = Application.Paths.templatesPath
-		print(directory)
 		try self.copy(file: "\(directory)/\(file)", to: file)
 	}
 
