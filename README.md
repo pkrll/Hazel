@@ -55,3 +55,7 @@ Usage: hazel [options]
   -v, --version:
       Print version information and exit
 ```
+
+# Author
+
+**Hazel** was created by Ardalan Samimi. The hazel nut icon was designed by [Flaticon](https://www.flaticon.com).
