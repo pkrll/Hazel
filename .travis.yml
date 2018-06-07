@@ -7,8 +7,8 @@ matrix:
 script:
   - make test
 before_install:
-  - chmod ugo+x ./.scripts/InstallSwift.sh
-  - . ./.scripts/InstallSwift.sh
+  - chmod ugo+x ./.assets/scripts/InstallSwift.sh
+  - . ./.assets/scripts/InstallSwift.sh
 notifications:
   email:
     on_success: never
