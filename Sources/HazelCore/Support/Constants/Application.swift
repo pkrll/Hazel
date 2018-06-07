@@ -10,7 +10,7 @@ enum Application {
 
 	enum Paths {
 		#if DEBUG
-			static let templates: String = "Public/Git/Hazel/templates"
+			static let templates: String = "Public/Git/Hazel/.assets/templates"
 		#else
 			static let templates: String = ".hazel/templates"
 		#endif
