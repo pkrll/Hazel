@@ -10,8 +10,8 @@ public typealias CommandLineOptions = (ProjectType: ProjectType, SkipMake: Bool,
 
 public final class Console {
 
-	public static func parseArguments() -> CommandLineOptions {
-		let commandLine = Console.commandLine()
+	public static func parseArguments(_ arguments: [String]? = nil) -> CommandLineOptions {
+		let commandLine = Console.commandLine(arguments)
 
 		let optionGenerate = EnumOption<ProjectType>(shortFlag: "t", longFlag: "type", required: true, helpMessage: "Choose language for project: [c|c++|swift|java|erlang]")
 		let optionSkipMake = BoolOption(longFlag: "no-makefile", helpMessage: "Do not generate Makefile")
@@ -43,8 +43,13 @@ public final class Console {
 		print(message)
 	}
 
-	private static func commandLine() -> CommandLineKit.CommandLine {
-		let commandLine = CommandLineKit.CommandLine()
+	private static func commandLine(_ arguments: [String]? = nil) -> CommandLineKit.CommandLine {
+		let commandLine: CommandLineKit.CommandLine
+		if let arguments = arguments {
+			commandLine = CommandLineKit.CommandLine(arguments: arguments)
+		} else {
+			commandLine = CommandLineKit.CommandLine()
+		}
 
 		commandLine.formatOutput = { s, type in
 		  var str: String
