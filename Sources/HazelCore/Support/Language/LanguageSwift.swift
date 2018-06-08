@@ -7,18 +7,24 @@ final class LanguageSwift: Generator {
 	override init() {
 		super.init()
 		self.directories 	= ["Sources", "Tests", "Sources/\(self.projectName)", "Tests/\(self.projectName)Tests"]
-		self.defaultFiles = ["Package.swift", ".editorconfig"]
+		self.defaultFiles = ["Package.swift"]
+		self.templatesPath = "\(Application.Paths.templatesPath)/Swift"
 	}
 
 	override func initProject() throws {
 		try super.initProject()
-		self.generateSwiftFiles()
+		try self.generateSwiftFiles()
 	}
 
-	private func generateSwiftFiles() {
-		self.fileManager.createFile(atPath: "Sources/\(self.projectName)/main.swift", contents: nil)
-		self.fileManager.createFile(atPath: "Tests/\(self.projectName)Tests/\(self.projectName)Tests.swift", contents: nil)
-		self.fileManager.createFile(atPath: "Tests/\(self.projectName)Tests/XCTestManifests.swift", contents: nil)
+	private func generateSwiftFiles() throws {
+		let files = [
+			(from: "\(templatesPath)/main.swift", to: "Sources/\(self.projectName)/\(self.projectName).swift"),
+			(from: "\(templatesPath)/Tests.swift", to: "Tests/\(self.projectName)Tests/\(self.projectName)Tests.swift"),
+			(from: "\(templatesPath)/XCTestManifests.swift", to: "Tests/\(self.projectName)Tests/XCTestManifests.swift"),
+			(from: "\(templatesPath)/LinuxMain.swift", to: "Tests/LinuxMain.swift")
+		]
+
+		try files.forEach { try self.copy(file: $0.from, to: $0.to) }
 	}
 
 }

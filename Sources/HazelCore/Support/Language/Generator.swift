@@ -7,11 +7,14 @@ class Generator: Language {
 
 	let fileManager: FileManager
 	let projectName: String
+
+	var templatesPath: String
 	var skipFiles: [String] = []
 
 	init() {
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
+		self.templatesPath = Application.Paths.templatesPath
 	}
 
 	func initProject() throws {
@@ -32,7 +35,6 @@ class Generator: Language {
 	}
 
 	func createDefaultFiles() throws {
-		let templatesPath = Application.Paths.templatesPath
 		for file in self.defaultFiles {
 			if self.skipFiles.contains(file) { continue }
 			try self.copy(file: "\(templatesPath)/\(file)", to: file)
