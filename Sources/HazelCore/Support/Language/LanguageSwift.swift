@@ -7,7 +7,7 @@ final class LanguageSwift: Generator {
 	override init() {
 		super.init()
 		self.directories 	= ["Sources", "Tests", "Sources/\(self.projectName)", "Tests/\(self.projectName)Tests"]
-		self.defaultFiles = ["Package.swift"]
+		self.defaultFiles = ["Package.swift", ".gitignore", "README.md"]
 		self.templatesPath = "\(Application.Paths.templatesPath)/Swift"
 	}
 
