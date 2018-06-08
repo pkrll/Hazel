@@ -6,12 +6,10 @@ import Foundation
 
 final class LanguageC: Generator {
 
-	override var directories: 	[String] {
-		return ["bin", "obj", "src", "tests"]
-	}
-
-	override var defaultFiles: [String] {
-		return ["Makefile", ".editorconfig"]
+	override init() {
+		super.init()
+		self.directories 	= ["bin", "obj", "src", "tests"]
+		self.defaultFiles = ["Makefile", ".editorconfig"]
 	}
 
 }

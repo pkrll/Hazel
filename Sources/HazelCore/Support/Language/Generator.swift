@@ -2,8 +2,8 @@ import Foundation
 
 class Generator: Language {
 
-	var directories: 	[String] { return [] }
-	var defaultFiles: [String] { return [] }
+	var directories: 	[String] = []
+	var defaultFiles: [String] = []
 
 	let fileManager: FileManager
 	let projectName: String
@@ -19,19 +19,19 @@ class Generator: Language {
 		try self.createDefaultFiles()
 	}
 
-	private func createDirectories() throws {
+	func createDirectories() throws {
 		for directory in self.directories {
 			try self.createDirectory(atPath: directory)
 		}
 	}
 
-	private func createDirectory(atPath path: String) throws {
+	func createDirectory(atPath path: String) throws {
 		let folderURL = URL(fileURLWithPath: path)
 		try self.fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
 		Console.default.write(message: "Created \(path)")
 	}
 
-	private func createDefaultFiles() throws {
+	func createDefaultFiles() throws {
 		let templatesPath = Application.Paths.templatesPath
 		for file in self.defaultFiles {
 			if self.skipFiles.contains(file) { continue }
@@ -39,7 +39,7 @@ class Generator: Language {
 		}
 	}
 
-	private func copy(file source: String, to destination: String) throws {
+	func copy(file source: String, to destination: String) throws {
 		var fileContents: String
 
 		fileContents = try String(contentsOf: URL(fileURLWithPath: source))

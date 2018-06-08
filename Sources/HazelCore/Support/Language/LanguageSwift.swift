@@ -4,11 +4,10 @@
 //
 final class LanguageSwift: Generator {
 
-	override var directories: 	[String] {
-		return ["Sources", "Tests"]
-	}
-	override var defaultFiles: [String] {
-		return ["Package.swift", ".editorconfig"]
+	override init() {
+		super.init()
+		self.directories 	= ["Sources", "Tests", "Sources/\(self.projectName)", "Tests/\(self.projectName)Tests"]
+		self.defaultFiles = ["Package.swift", ".editorconfig"]
 	}
 
 }
