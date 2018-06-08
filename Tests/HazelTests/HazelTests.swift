@@ -12,6 +12,7 @@ final class HazelTests: XCTestCase {
 		("testCProjectWithMakeAndConf", testCProjectWithMakeAndConf),
 		("testCProjectWithMakeNoConf", testCProjectWithMakeNoConf),
 		("testCProjectWithNoMakeNoConf", testCProjectWithNoMakeNoConf),
+		("testSwiftProject", testSwiftProject),
 	]
 
 	let tmpPath = "tmp"
@@ -78,6 +79,24 @@ final class HazelTests: XCTestCase {
 		XCTAssertTrue(fileManager.fileExists(atPath: "tests"))
 		XCTAssertFalse(fileManager.fileExists(atPath: "Makefile"))
 		XCTAssertFalse(fileManager.fileExists(atPath: ".editorconfig"))
+	}
+
+	func testSwiftProject() {
+		let console = Console.default
+		let options = console.parseArguments([ "HazelTests", "--type", "swift" ])
+		let hazel = Hazel(withOptions: options)
+
+		console.silentMode = true
+		hazel.run()
+
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)/\(self.tmpPath).swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/LinuxMain.swift"))
 	}
 
 }
