@@ -91,21 +91,24 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testSwiftProject() {
-		// let console = Console.default
-		// let options = console.parseArguments([ "HazelTests", "--type", "swift" ])
-		// let hazel = Hazel(withOptions: options)
-		//
-		// console.silentMode = true
-		// hazel.run()
-		//
-		// XCTAssertTrue(fileManager.fileExists(atPath: "Sources"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)/\(self.tmpPath).swift"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "Tests"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
-		// XCTAssertTrue(fileManager.fileExists(atPath: "tests/LinuxMain.swift"))
+		let console = ConsoleIO.default
+		let options = console.parse([ "init", "--type", "swift" ])
+		let hazel = Hazel(console)
+
+		ConsoleIO.default.silentMode = true
+
+		if options.initialize.value {
+			hazel.initialize(options.initialize)
+		}
+
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)/\(self.tmpPath).swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "tests/LinuxMain.swift"))
 	}
 
 }
