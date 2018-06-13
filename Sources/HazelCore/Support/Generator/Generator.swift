@@ -8,22 +8,27 @@ import Foundation
 
 class Generator: Generatable {
 
-  var directories: [String] = []
-  var defaultFiles: [String] = []
+	var directories: [String] = []
+	var defaultFiles: [String] = []
 	let fileManager: FileManager
 	let projectName: String
 	var templates: String
 	var skipFiles: [String]
 
-  static func forType(_ type: ProjectType) -> Generator {
-    return Generator()
-  }
-  
+	static func forType(_ type: ProjectType) -> Generator {
+		switch type {
+		case .langC:
+			return CGenerator()
+		case .langSwift:
+			return SwiftGenerator()
+		}
+	}
+
 	init() {
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
 		self.templates = Application.Paths.templatesPath
-    self.skipFiles = []
+		self.skipFiles = []
 	}
 
 	func run() throws {

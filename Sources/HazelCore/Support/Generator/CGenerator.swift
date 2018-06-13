@@ -7,7 +7,11 @@
 import Foundation
 
 final class CGenerator: Generator {
-  
-  
-  
+
+  override init() {
+		super.init()
+		self.directories = ["bin", "obj", "src", "tests"]
+		self.defaultFiles = ["Makefile", ".editorconfig"]
+	}
+
 }
