@@ -32,7 +32,7 @@ public struct ConsoleIO {
 		if arguments.help.value! {
 			swiftArgs.printUsage()
 		} else if arguments.version.value! {
-			// ...
+			self.write(message: Application.version)
 		}
 
 		return arguments
