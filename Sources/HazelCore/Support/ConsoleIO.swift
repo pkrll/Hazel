@@ -10,7 +10,7 @@ import Foundation
 
 public struct ConsoleIO {
 
-	public static let `default` = ConsoleIO()
+	public static var `default` = ConsoleIO()
 
 	var silentMode: Bool
 
