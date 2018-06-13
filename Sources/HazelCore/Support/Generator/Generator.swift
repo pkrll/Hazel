@@ -1,23 +1,32 @@
+//
+//  Generator.swift
+//  HazelCore
+//
+//  Created by Ardalan Samimi on 2018-06-13.
+//
 import Foundation
 
-class Generator: Language {
+class Generator: Generatable {
 
-	var directories: 	[String] = []
-	var defaultFiles: [String] = []
-
+  var directories: [String] = []
+  var defaultFiles: [String] = []
 	let fileManager: FileManager
 	let projectName: String
+	var templates: String
+	var skipFiles: [String]
 
-	var templatesPath: String
-	var skipFiles: [String] = []
-
+  static func forType(_ type: ProjectType) -> Generator {
+    return Generator()
+  }
+  
 	init() {
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
-		self.templatesPath = Application.Paths.templatesPath
+		self.templates = Application.Paths.templatesPath
+    self.skipFiles = []
 	}
 
-	func initProject() throws {
+	func run() throws {
 		try self.createDirectories()
 		try self.createDefaultFiles()
 	}
@@ -31,13 +40,13 @@ class Generator: Language {
 	func createDirectory(atPath path: String) throws {
 		let folderURL = URL(fileURLWithPath: path)
 		try self.fileManager.createDirectory(at: folderURL, withIntermediateDirectories: false, attributes: nil)
-		Console.default.write(message: "Created \(path)")
+		ConsoleIO.default.write(message: "Created \(path)")
 	}
 
 	func createDefaultFiles() throws {
 		for file in self.defaultFiles {
 			if self.skipFiles.contains(file) { continue }
-			try self.copy(file: "\(templatesPath)/\(file)", to: file)
+			try self.copy(file: "\(templates)/\(file)", to: file)
 		}
 	}
 
@@ -49,7 +58,7 @@ class Generator: Language {
 		let fileData = fileContents.data(using: .utf8)
 
 		try fileData!.write(to: URL(fileURLWithPath: destination))
-		Console.default.write(message: "Created \(destination)")
+		ConsoleIO.default.write(message: "Created \(destination)")
 	}
 
 }

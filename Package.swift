@@ -7,7 +7,8 @@ let package = Package(
 	name: "Hazel",
 	dependencies: [
 		.package(url: "https://github.com/onevcat/Rainbow", from: "3.0.0"),
-		.package(url: "https://github.com/pdesantis/CommandLine", .branch("swift4")),
+		// .package(url: "https://github.com/pkrll/SwiftArgs", from: "0.4.0")
+		.package(url: "https://github.com/pkrll/SwiftArgs", .branch("dev/0.5.4"))
 	],
 	targets: [
 		.target(
@@ -16,7 +17,7 @@ let package = Package(
 		),
 		.target(
 			name: "HazelCore",
-			dependencies: ["Rainbow", "CommandLine"]
+			dependencies: ["Rainbow", "SwiftArgs"]
 		),
 		.testTarget(
 			name: "HazelTests",

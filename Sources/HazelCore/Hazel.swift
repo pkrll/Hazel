@@ -1,44 +1,53 @@
-import Foundation
+//
+//  Hazel.swift
+//  HazelCore
+//
+//  Created by Ardalan Samimi on 2018-06-13.
+//
+import SwiftArgs
 
 public struct Hazel {
 
-	let options: CommandLineOptions!
-	var silentMode: Bool = false
+	let console: ConsoleIO
 
-	public init(withOptions options: CommandLineOptions) {
-		self.options = options
+	public init(_ console: ConsoleIO) {
+		self.console = console
 	}
 
-	public func run() {
-		let generator = self.getGenerator(for: self.options.ProjectType)!
+	public func initialize(_ command: CommandOption) {
+		guard command.arguments.count > 0 else {
+			return
+		}
 
-		if self.options.SkipMake { generator.skipFiles.append("Makefile") }
-		if self.options.SkipConf { generator.skipFiles.append(".editorconfig") }
+		var projType: ProjectType?
+		var skipMake: Bool = false
+		var skipConf: Bool = false
+
+		for argument in command.arguments {
+			switch argument.name {
+			case "type": projType = (argument as! EnumOption<ProjectType>).value!
+			case "make": skipMake = (argument as! BoolOption).value!
+			case "conf": skipConf = (argument as! BoolOption).value!
+			default:
+				break
+			}
+		}
+
+    guard let type = projType else {
+      ConsoleIO.forceQuit(withMessage: "Project type not recognized.")
+      return
+    }
+    
+		let generator = Generator.forType(type)
+
+		if skipMake { generator.skipFiles.append("Makefile") }
+		if skipConf { generator.skipFiles.append(".editorconfig") }
 
 		do {
-			try generator.initProject()
+			try generator.run()
 		} catch {
-			self.forceQuit(error.localizedDescription)
+      ConsoleIO.forceQuit(withMessage: error.localizedDescription)
 		}
-	}
-
-	private func forceQuit(_ message: String) {
-		let message = "An error occurred: \(message)"
-		Console.default.write(message: message)
-		exit(1)
-	}
-
-	private func getGenerator(for projectType: ProjectType) -> Generator? {
-		switch projectType {
-		case .C:
-			return LanguageC()
-		case .Swift:
-			return LanguageSwift()
-		default:
-			self.forceQuit("No support yet added for \(projectType.rawValue) projects.")
-		}
-
-		return nil
 	}
 
 }
