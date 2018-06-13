@@ -25,9 +25,9 @@ public struct Hazel {
 
 		for argument in command.arguments {
 			switch argument.name {
-			case "type": projType = (argument as! EnumOption<ProjectType>).value!
-			case "make": skipMake = (argument as! BoolOption).value!
-			case "conf": skipConf = (argument as! BoolOption).value!
+			case "type": projType = (argument as? EnumOption<ProjectType>)?.value! ?? nil
+			case "make": skipMake = (argument as? BoolOption)?.value! ?? false
+			case "conf": skipConf = (argument as? BoolOption)?.value! ?? false
 			default:
 				break
 			}
@@ -37,7 +37,7 @@ public struct Hazel {
       ConsoleIO.forceQuit(withMessage: "Project type not recognized.")
       return
     }
-    
+
 		let generator = Generator.forType(type)
 
 		if skipMake { generator.skipFiles.append("Makefile") }
