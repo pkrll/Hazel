@@ -21,15 +21,19 @@ codecov: before_test
 	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration debug
 	rm -rf /tmp/hazel
 
+docker:
+	docker build --tag hazel .
+	docker run --rm hazel
+
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
 	mkdir -p $(CONFIGDIR)
 	cd .assets && cp -r templates $(CONFIGDIR)
 	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
 
-docker:
-	docker build --tag hazel .
-	docker run --rm hazel
+uninstall:
+	rm -r $(CONFIGDIR)
+	rm $(BINARYDIR)/hazel
 
 clean:
 	rm -rf .build/
