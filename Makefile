@@ -23,7 +23,7 @@ test: before_test
 	rm -rf /tmp/hazel
 
 codecov: before_test
-	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration debug
+	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration Debug "OTHER_SWIFT_FLAGS=-DDEBUG"
 	rm -rf /tmp/hazel
 
 docker:
