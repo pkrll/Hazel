@@ -43,8 +43,6 @@ class Generator: Generatable {
 				? self.directories.append(file)
 				: self.projectFiles.append(file)
 		}
-		print(self.directories)
-		print(self.projectFiles)
 
 		return true
 	}
