@@ -94,7 +94,10 @@ As of now, support exists for the following placeholders:
 
 #### Commandline options
 
+Currently, ``Hazel`` offers one command.
+
 ```bash
+$ hazel --help
 Usage: hazel [command] [argument]
 
 Commands:
@@ -102,6 +105,14 @@ Commands:
 
 Options:
   -h, --help     Print help message and exit
+  -v, --version  Print version information and exit
+```
+```bash
+$ hazel init --help
+Usage: hazel init [argument]
+
+Options:
+  -t, --type     Choose project type
   -v, --version  Print version information and exit
 
 ```
