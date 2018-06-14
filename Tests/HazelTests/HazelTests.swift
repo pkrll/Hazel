@@ -105,10 +105,10 @@ final class HazelTests: XCTestCase {
 		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)/\(self.tmpPath).swift"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Tests"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/LinuxMain.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/LinuxMain.swift"))
 	}
 
 }
