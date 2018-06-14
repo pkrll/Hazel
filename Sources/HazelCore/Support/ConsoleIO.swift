@@ -30,9 +30,11 @@ public struct ConsoleIO {
 		}
 
 		if arguments.help.value! {
-			swiftArgs.printUsage()
+			swiftArgs.printUsage((arguments.initialize.value) ? arguments.initialize : nil)
+			exit(0)
 		} else if arguments.version.value! {
 			self.write(message: Application.version)
+			exit(0)
 		}
 
 		return arguments
@@ -43,9 +45,9 @@ public struct ConsoleIO {
 		print((type == .standard) ? message.blue : message.red)
 	}
 
-	static func forceQuit(withMessage message: String? = nil) {
+	func forceQuit(withMessage message: String? = nil) {
 		if let message = message {
-      ConsoleIO.default.write(message: "An error occurred: \(message)".red)
+      self.write(message: "An error occurred: \(message)".red)
 		}
 
 		exit(1)

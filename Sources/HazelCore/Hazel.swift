@@ -34,7 +34,7 @@ public struct Hazel {
 		}
 
     guard let type = projType else {
-      ConsoleIO.forceQuit(withMessage: "Project type not recognized.")
+      self.console.forceQuit(withMessage: "Project type not recognized.")
       return
     }
 
@@ -46,7 +46,7 @@ public struct Hazel {
 		do {
 			try generator.run()
 		} catch {
-      ConsoleIO.forceQuit(withMessage: error.localizedDescription)
+      self.console.forceQuit(withMessage: error.localizedDescription)
 		}
 	}
 
