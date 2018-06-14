@@ -9,6 +9,11 @@ DEBUGDIR=.build/debug
 build:
 	$(SC) build --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
 
+run: build
+	ln -sf .build/x86_64-apple-macosx10.10/debug/Hazel hazel_debug
+	@echo "Symlink created. To run Hazel:"
+	@echo "hazel_debug <command> <argument>"
+
 before_test:
 	mkdir -p /tmp/hazel
 	cd .assets && cp -r templates /tmp/hazel
@@ -38,3 +43,4 @@ uninstall:
 clean:
 	rm -rf .build/
 	rm -rf xcov_report
+	rm -f hazel_debug
