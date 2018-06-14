@@ -10,8 +10,7 @@ public struct Arguments {
 
 	public let help: BoolOption
 	public let version: BoolOption
-	public let type: EnumOption<ProjectType>
-	public let skipMake: BoolOption
+	public let type: StringOption
 	public let skipConf: BoolOption
 	public let initialize: CommandOption
 
@@ -30,18 +29,12 @@ public struct Arguments {
 			description: "Print version information and exit"
 		)
 
-		self.type = EnumOption<ProjectType>(
+		self.type = StringOption(
 			name: "type",
 			shortFlag: "t",
 			longFlag: "type",
-			description: "Set language for project: [c|swift]",
+			description: "Set language for project",
 			isRequired: true
-		)
-
-		self.skipMake = BoolOption(
-			name: "make",
-			longFlag: "no-makefile",
-			description: "Do not generate Makefile"
 		)
 
 		self.skipConf = BoolOption(
@@ -54,7 +47,6 @@ public struct Arguments {
 			"init",
 			withArguments: [
 				self.type,
-				self.skipMake,
 				self.skipConf,
 				self.help
 			],

@@ -47,7 +47,7 @@ public struct ConsoleIO {
 
 	func forceQuit(withMessage message: String? = nil) {
 		if let message = message {
-      self.write(message: "An error occurred: \(message)".red)
+      self.write(message: "An error occurred: \(message)", ofType: .error)
 		}
 
 		exit(1)

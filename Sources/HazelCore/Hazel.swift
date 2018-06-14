@@ -19,34 +19,28 @@ public struct Hazel {
 			return
 		}
 
-		var projType: ProjectType?
-		var skipMake: Bool = false
+		var projType: String?
 		var skipConf: Bool = false
 
 		for argument in command.arguments {
 			switch argument.name {
-			case "type": projType = (argument as? EnumOption<ProjectType>)?.value! ?? nil
-			case "make": skipMake = (argument as? BoolOption)?.value! ?? false
+			case "type": projType = (argument as? StringOption)?.value
 			case "conf": skipConf = (argument as? BoolOption)?.value! ?? false
-			default:
-				break
+			default: break
 			}
 		}
 
-    guard let type = projType else {
-      self.console.forceQuit(withMessage: "Project type not recognized.")
-      return
-    }
+		guard let type = projType, let generator = Generator(type) else {
+			self.console.forceQuit(withMessage: "Project type not recognized.")
+			return
+		}
 
-		let generator = Generator.forType(type)
-
-		if skipMake { generator.skipFiles.append("Makefile") }
 		if skipConf { generator.skipFiles.append(".editorconfig") }
 
 		do {
 			try generator.run()
 		} catch {
-      self.console.forceQuit(withMessage: error.localizedDescription)
+			self.console.forceQuit(withMessage: error.localizedDescription)
 		}
 	}
 
