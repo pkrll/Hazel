@@ -57,3 +57,4 @@ build/*
 bin/*
 xcov_report/*
 Package.resolved
+hazel_debug

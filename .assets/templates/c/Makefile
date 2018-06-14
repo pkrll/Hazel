@@ -1,12 +1,13 @@
-.PHONY: all test clean
+.PHONY: all test clean run
 CC=gcc
-CFLAGS=-Wall #-Wextra -Werror -pedantic
-TFLAGS=-g -lcunit -I/usr/local/Cellar/cunit/2.1-3/include -L/usr/local/Cellar/cunit/2.1-3/lib
+CFLAGS=-Wall -Werror -pedantic
+TFLAGS=-g
 ## FOLDERS & FILES ##
 SRC_DIR=src
 OBJ_DIR=obj
 BIN_DIR=bin
 TST_DIR=tests
+BINARY=$(BIN_DIR)/__PROJECTNAME__
 
 SOURCES  = $(wildcard $(SRC_DIR)/*.c)
 SOURCES += $(wildcard $(TST_DIR)/*.c)
@@ -14,8 +15,7 @@ OBJECTS  = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
 
 ## RULES ##
 
-all:
-	@echo "No rule chosen. Aborting."
+all: build
 
 build: $(OBJECTS)
 
@@ -25,6 +25,12 @@ test: build
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BINARY):
+	$(CC) $(OBJECTS) -o $@
+
+run: $(BINARY)
+	./$(BINARY)
 
 clean:
 	rm -rf bin/*

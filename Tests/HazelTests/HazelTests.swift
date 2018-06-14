@@ -3,7 +3,7 @@
 // Created by Ardalan Samimi
 //
 import XCTest
-import CommandLineKit
+import SwiftArgs
 @testable import HazelCore
 
 final class HazelTests: XCTestCase {
@@ -11,14 +11,14 @@ final class HazelTests: XCTestCase {
 	static var allTests = [
 		("testCProjectWithMakeAndConf", testCProjectWithMakeAndConf),
 		("testCProjectWithMakeNoConf", testCProjectWithMakeNoConf),
-		("testCProjectWithNoMakeNoConf", testCProjectWithNoMakeNoConf),
-		("testSwiftProject", testSwiftProject),
+		("testSwiftProject", testSwiftProject)
 	]
 
-	let tmpPath = "tmp"
+	let tmpPath = "hazel_test"
 	let fileManager = FileManager.default
 
 	override func setUp() {
+		fileManager.changeCurrentDirectoryPath("/tmp")
 		do {
 			try fileManager.createDirectory(at: URL(fileURLWithPath: tmpPath), withIntermediateDirectories: false)
 		} catch {
@@ -34,12 +34,15 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testCProjectWithMakeAndConf() {
-		let console = Console.default
-		let options = console.parseArguments([ "HazelTests", "--type", "c" ])
-		let hazel = Hazel(withOptions: options)
+		let console = ConsoleIO.default
+		let options = console.parse(["init", "--type", "c" ])
+		let hazel = Hazel(console)
 
-		console.silentMode = true
-		hazel.run()
+		ConsoleIO.default.silentMode = true
+
+		if options.initialize.value {
+			hazel.initialize(options.initialize)
+		}
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "bin"))
@@ -50,12 +53,15 @@ final class HazelTests: XCTestCase {
 	}
 
 	func testCProjectWithMakeNoConf() {
-		let console = Console.default
-		let options = console.parseArguments([ "HazelTests", "--type", "c", "--no-config" ])
-		let hazel = Hazel(withOptions: options)
+		let console = ConsoleIO.default
+		let options = console.parse([ "init", "--type", "c", "--no-config" ])
+		let hazel = Hazel(console)
 
-		console.silentMode = true
-		hazel.run()
+		ConsoleIO.default.silentMode = true
+
+		if options.initialize.value {
+			hazel.initialize(options.initialize)
+		}
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "bin"))
@@ -65,38 +71,25 @@ final class HazelTests: XCTestCase {
 		XCTAssertFalse(fileManager.fileExists(atPath: ".editorconfig"))
 	}
 
-	func testCProjectWithNoMakeNoConf() {
-		let console = Console.default
-		let options = console.parseArguments([ "HazelTests", "--type", "c", "--no-makefile", "--no-config" ])
-		let hazel = Hazel(withOptions: options)
-
-		console.silentMode = true
-		hazel.run()
-
-		XCTAssertTrue(fileManager.fileExists(atPath: "obj"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "bin"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "src"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests"))
-		XCTAssertFalse(fileManager.fileExists(atPath: "Makefile"))
-		XCTAssertFalse(fileManager.fileExists(atPath: ".editorconfig"))
-	}
-
 	func testSwiftProject() {
-		let console = Console.default
-		let options = console.parseArguments([ "HazelTests", "--type", "swift" ])
-		let hazel = Hazel(withOptions: options)
+		let console = ConsoleIO.default
+		let options = console.parse([ "init", "--type", "swift" ])
+		let hazel = Hazel(console)
 
-		console.silentMode = true
-		hazel.run()
+		ConsoleIO.default.silentMode = true
+
+		if options.initialize.value {
+			hazel.initialize(options.initialize)
+		}
 
 		XCTAssertTrue(fileManager.fileExists(atPath: "Sources"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(self.tmpPath)/\(self.tmpPath).swift"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Tests"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
-		XCTAssertTrue(fileManager.fileExists(atPath: "tests/LinuxMain.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/LinuxMain.swift"))
 	}
 
 }

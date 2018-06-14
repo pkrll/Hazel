@@ -1,19 +1,21 @@
 //
-// Application.swift
-// Created by Ardalan Samimi on 2018-06-06
+//  Application.swift
+//  HazelCore
+//
+//  Created by Ardalan Samimi on 2018-06-13.
 //
 import Foundation
 
-enum Application {
+public enum Application {
 
-	static let appName: String = "Hazel"
-	static let version: String = "0.1.0"
+	public static let appName: String = "Hazel"
+	public static let version: String = "1.0.0"
 
-	enum Paths {
+	public enum Paths {
 		#if DEBUG
-			static var templatesPath: String = "/tmp/hazel/templates"
+			public static var templatesPath: String = "/tmp/hazel/templates"
 		#else
-			static var templatesPath: String {
+			public static var templatesPath: String {
 				var baseDirectory: String
 
 				if #available(macOS 10.12, *) {

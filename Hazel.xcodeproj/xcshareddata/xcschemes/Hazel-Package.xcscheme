@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CommandLine::CommandLineKit"
-               BuildableName = "CommandLineKit.framework"
-               BlueprintName = "CommandLineKit"
+               BlueprintIdentifier = "Hazel::Hazel"
+               BuildableName = "Hazel"
+               BlueprintName = "Hazel"
                ReferencedContainer = "container:Hazel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,9 +42,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "Hazel::Hazel"
-               BuildableName = "Hazel"
-               BlueprintName = "Hazel"
+               BlueprintIdentifier = "SwiftArgs::SwiftArgs"
+               BuildableName = "SwiftArgs.framework"
+               BlueprintName = "SwiftArgs"
                ReferencedContainer = "container:Hazel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -97,9 +97,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CommandLine::CommandLineKit"
-            BuildableName = "CommandLineKit.framework"
-            BlueprintName = "CommandLineKit"
+            BlueprintIdentifier = "Hazel::Hazel"
+            BuildableName = "Hazel"
+            BlueprintName = "Hazel"
             ReferencedContainer = "container:Hazel.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

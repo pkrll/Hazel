@@ -1,6 +1,12 @@
-// Output type
+//
+//  ConsoleOutputType.swift
+//  HazelCore
+//
+//  Created by Ardalan Samimi on 2018-06-13.
+//
+import Foundation
 
-public enum ConsoleOutputType {
-	case standard
-	case error
+enum ConsoleOutputType {
+  case standard
+  case error
 }

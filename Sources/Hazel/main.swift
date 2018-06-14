@@ -1,10 +1,16 @@
 //
-// main.swift
-// Created by Ardalan Samimi
+//  main.swift
+//  Hazel
+//
+//  Created by Ardalan Samimi on 2018-06-13.
 //
 import HazelCore
 
-let arg = Console.default.parseArguments()
-let app = Hazel(withOptions: arg)
+let consoleIO = ConsoleIO.default
+let arguments = consoleIO.parse()
 
-app.run()
+let app = Hazel(consoleIO)
+
+if arguments.initialize.value {
+	app.initialize(arguments.initialize)
+}
