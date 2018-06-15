@@ -1,0 +1,2 @@
+ignore:
+  - "Sources/HazelCore/Support/Completion.swift"
