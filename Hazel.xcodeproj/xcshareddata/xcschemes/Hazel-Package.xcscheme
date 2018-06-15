@@ -5,14 +5,6 @@
       <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
         <BuildableReference
           BuildableIdentifier = "primary"
-          BuildableName = "'lib$(TARGET_NAME)'"
-          BlueprintName = "SwiftArgs"
-          ReferencedContainer = "container:Hazel.xcodeproj">
-        </BuildableReference>
-      </BuildActionEntry>
-      <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
-        <BuildableReference
-          BuildableIdentifier = "primary"
           BuildableName = "'$(TARGET_NAME)'"
           BlueprintName = "Hazel"
           ReferencedContainer = "container:Hazel.xcodeproj">
@@ -22,7 +14,7 @@
         <BuildableReference
           BuildableIdentifier = "primary"
           BuildableName = "'lib$(TARGET_NAME)'"
-          BlueprintName = "Rainbow"
+          BlueprintName = "HazelCore"
           ReferencedContainer = "container:Hazel.xcodeproj">
         </BuildableReference>
       </BuildActionEntry>
@@ -30,7 +22,15 @@
         <BuildableReference
           BuildableIdentifier = "primary"
           BuildableName = "'lib$(TARGET_NAME)'"
-          BlueprintName = "HazelCore"
+          BlueprintName = "SwiftArgs"
+          ReferencedContainer = "container:Hazel.xcodeproj">
+        </BuildableReference>
+      </BuildActionEntry>
+      <BuildActionEntry buildForTesting = "YES" buildForRunning = "YES" buildForProfiling = "YES" buildForArchiving = "YES" buildForAnalyzing = "YES">
+        <BuildableReference
+          BuildableIdentifier = "primary"
+          BuildableName = "'lib$(TARGET_NAME)'"
+          BlueprintName = "Rainbow"
           ReferencedContainer = "container:Hazel.xcodeproj">
         </BuildableReference>
       </BuildActionEntry>
