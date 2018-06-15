@@ -15,8 +15,11 @@ run: build
 	@echo "hazel_debug <command> <argument>"
 
 before_test:
+	@echo "\033[0;32mCreating folder /tmp/hazel"
 	mkdir -p /tmp/hazel
+	@echo "Copying templates file to /tmp/hazel"
 	cd .assets && cp -r templates /tmp/hazel
+	@echo "\033[0;0m"
 
 test: before_test
 	$(SC) test --configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
