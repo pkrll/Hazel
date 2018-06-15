@@ -1,4 +1,4 @@
-.PHONY: build test before_test install clean
+.PHONY: build test before_test install clean completion
 SC=swift
 
 CONFIGDIR=~/.hazel
@@ -34,16 +34,12 @@ install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
 	mkdir -p $(CONFIGDIR)
 	cd .assets && cp -r templates $(CONFIGDIR)
-	cd .assets && cp -r scripts/completion $(CONFIGDIR)/scripts
+	cd .assets/scripts && cp -r completion $(CONFIGDIR)
 	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
-	which hazel > /dev/null && . "$( hazel initpath )"
 
 uninstall:
 	rm -r $(CONFIGDIR)
 	rm $(BINARYDIR)/hazel
-
-completion:
-	which hazel > /dev/null && . "$( hazel initpath )"
 
 clean:
 	rm -rf .build/
