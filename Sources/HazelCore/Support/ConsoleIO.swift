@@ -62,7 +62,7 @@ public struct ConsoleIO {
 		if arguments[1] == "cmplt" {
 			Completion().complete(arguments[2])
 			exit(0)
-		} else if arguments[1] == "initpath" {
+		} else if arguments[1] == "--completion-path" {
 			print("\(Application.Paths.configPath)/scripts/init.sh")
 			exit(0)
 		}
