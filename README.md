@@ -17,6 +17,7 @@
 		* [Command-line options](#command-line-options)
 * [Installation](#installation)
 	* [Prerequisites](#prerequisites)
+	* [Tab completion](#tab-completion)
 * [Acknowledgements](#acknowledgements)
 
 ## Usage
@@ -121,7 +122,7 @@ Options:
 
 ``Hazel`` has only been tested on macOS High Sierra (10.13), so far, and is only available for download through Github.
 
-**Prerequisites**:
+##### Prerequisites
 
 * Swift 4.0
 * Git
@@ -135,6 +136,14 @@ $ make install
 ```
 
 This will install ``Hazel`` in ``/usr/local/bin``, along with its templates files in ``~/.hazel``.
+
+##### Tab completion
+
+``Hazel`` comes equipped with tab completion for ``bash`` and ``zsh``. Add the following to your startup script (``.bashrc``, ``.zshrc``, etc...) to enable tab completion:
+
+```bash
+which hazel > /dev/null && . "$( hazel --completion-path )"
+```
 
 ## Acknowledgements
 
