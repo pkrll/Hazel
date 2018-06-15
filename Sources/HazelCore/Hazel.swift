@@ -30,15 +30,19 @@ public struct Hazel {
 			}
 		}
 
-		guard let type = projType, let generator = Generator(type) else {
+		guard let type = projType else {
 			self.console.forceQuit(withMessage: "Project type not recognized.")
 			return
 		}
 
+		let generator = Generator(type)
 		if skipConf { generator.skipFiles.append(".editorconfig") }
 
 		do {
+			try generator.prepare()
 			try generator.run()
+		} catch GeneratorError.unrecognizedProjectType(let type) {
+			self.console.forceQuit(withMessage: "Could not find template for \(type).")
 		} catch {
 			self.console.forceQuit(withMessage: error.localizedDescription)
 		}

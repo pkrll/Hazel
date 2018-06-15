@@ -17,22 +17,18 @@ class Generator: Generatable {
 	var templates: String
 	var skipFiles: [String] = [".gitkeep"]
 
-	init?(_ templateType: String) {
+	init(_ templateType: String) {
 		self.templateType = templateType.lowercased()
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
 		self.templates = Application.Paths.templatesPath
-
-		if self.prepare() == false {
-			return nil
-		}
 	}
 
-	func prepare() -> Bool {
+	func prepare() throws {
 		let directory = "\(self.templates)/\(self.templateType)"
 
 		guard self.fileManager.isDirectory(directory) else {
-			return false
+			throw GeneratorError.unrecognizedProjectType(self.templateType)
 		}
 
 		let enumerator = self.fileManager.enumerator(atPath: directory)
@@ -43,8 +39,6 @@ class Generator: Generatable {
 				? self.directories.append(file)
 				: self.projectFiles.append(file)
 		}
-
-		return true
 	}
 
 	func run() throws {
