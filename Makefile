@@ -35,6 +35,8 @@ docker:
 
 install:
 	$(SC) build --configuration release -Xswiftc -static-stdlib
+
+configure: install
 	mkdir -p $(CONFIGDIR)
 	cd .assets && cp -r templates $(CONFIGDIR)
 	cd .assets/scripts && cp -r completion $(CONFIGDIR)
