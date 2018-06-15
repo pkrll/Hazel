@@ -13,11 +13,11 @@ struct Completion {
 
 		guard arguments.count > 1 else {
 			if arguments[0].hasPrefix("--") {
-				self.reply("--help", "--version")
+				self.reply("--help", "--version", "--quiet")
 			} else if arguments[0].hasPrefix("-") {
-				self.reply("-h", "-v")
+				self.reply("-h", "-v", "-q")
 			} else {
-				self.reply("init", "--help", "--version")
+				self.reply("init", "--help", "--version", "--quiet")
 			}
 
 			return

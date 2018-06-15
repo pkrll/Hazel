@@ -22,7 +22,7 @@ public struct ConsoleIO {
 		self.handleTabCompletion()
 
 		let arguments = Arguments()
-		let validArgs = [arguments.initialize, arguments.help, arguments.version]
+		let validArgs = [arguments.initialize, arguments.help, arguments.version, arguments.quiet]
 		let swiftArgs = SwiftArgs(arguments: validArgs)
 
 		do {
@@ -37,6 +37,8 @@ public struct ConsoleIO {
 		} else if arguments.version.value! {
 			self.write(message: Application.version)
 			exit(0)
+		} else if arguments.quiet.value! {
+			ConsoleIO.default.silentMode = true
 		}
 
 		return arguments

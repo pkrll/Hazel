@@ -36,10 +36,8 @@ final class HazelTests: XCTestCase {
 
 	func testCProjectWithMakeAndConf() {
 		let console = ConsoleIO.default
-		let options = console.parse(["init", "--type", "c" ])
+		let options = console.parse(["-q", "init", "--type", "c" ])
 		let hazel = Hazel(console)
-
-		ConsoleIO.default.silentMode = true
 
 		if options.initialize.value {
 			hazel.initialize(options.initialize)

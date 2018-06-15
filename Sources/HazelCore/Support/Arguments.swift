@@ -9,6 +9,7 @@ import SwiftArgs
 public struct Arguments {
 
 	public let help: BoolOption
+	public let quiet: BoolOption
 	public let version: BoolOption
 	public let type: StringOption
 	public let skipConf: BoolOption
@@ -20,6 +21,13 @@ public struct Arguments {
 			shortFlag: "h",
 			longFlag: "help",
 			description: "Print help message and exit"
+		)
+
+		self.quiet = BoolOption(
+			name: "quiet",
+			shortFlag: "q",
+			longFlag: "quiet",
+			description: "Silent mode"
 		)
 
 		self.version = BoolOption(
