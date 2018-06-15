@@ -11,7 +11,8 @@ final class HazelTests: XCTestCase {
 	static var allTests = [
 		("testCProjectWithMakeAndConf", testCProjectWithMakeAndConf),
 		("testCProjectWithMakeNoConf", testCProjectWithMakeNoConf),
-		("testSwiftProject", testSwiftProject)
+		("testSwiftProject", testSwiftProject),
+		("testError", testError)
 	]
 
 	let tmpPath = "hazel_test"
@@ -90,6 +91,19 @@ final class HazelTests: XCTestCase {
 		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests/\(self.tmpPath)Tests.swift"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(self.tmpPath)Tests/XCTestManifests.swift"))
 		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/LinuxMain.swift"))
+	}
+
+	func testError() {
+		let generator = Generator("yahoo")
+
+		do {
+			try generator.prepare()
+			XCTAssertTrue(false)
+		} catch GeneratorError.unrecognizedProjectType(let type) {
+			XCTAssertEqual("yahoo", type)
+		} catch {
+			XCTAssertTrue(false)
+		}
 	}
 
 }
