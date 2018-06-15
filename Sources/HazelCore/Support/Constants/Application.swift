@@ -13,9 +13,10 @@ public enum Application {
 
 	public enum Paths {
 		#if DEBUG
+			public static var configPath: String = "/tmp/hazel"
 			public static var templatesPath: String = "/tmp/hazel/templates"
 		#else
-			public static var templatesPath: String {
+			public static var configPath: String {
 				var baseDirectory: String
 
 				if #available(macOS 10.12, *) {
@@ -24,7 +25,11 @@ public enum Application {
 					baseDirectory = NSHomeDirectory()
 				}
 
-				return "\(baseDirectory)/.hazel/templates"
+				return "\(baseDirectory)/.hazel"
+			}
+
+			public static var templatesPath: String {
+				return "\(Application.Paths.configPath)/templates"
 			}
 		#endif
 	}
