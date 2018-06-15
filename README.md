@@ -10,15 +10,46 @@
 
 ## Table of contents
 
+* [Installation](#installation)
+	* [Prerequisites](#prerequisites)
+	* [Homebrew](#install-with-homebrew)
+	* [Make](#install-with-make)
 * [Usage](#usage)
 	* [Customization](#customization)
 		* [Example](#example)
 		* [Placeholders](#placeholders)
-		* [Command-line options](#command-line-options)
-* [Installation](#installation)
-	* [Prerequisites](#prerequisites)
-	* [Tab completion](#tab-completion)
+	* [Command-line options](#command-line-options)
+* [Tab completion](#tab-completion)
 * [Acknowledgements](#acknowledgements)
+
+## Installation
+
+``Hazel`` has only been tested on macOS High Sierra (10.13).
+
+#### Prerequisites
+
+* Swift 4.0
+
+#### Install with Homebrew
+
+Tap into my personal repository of ``Homebrew`` formulas, and install using the ``--no-sandbox`` flag.
+
+```bash
+$ brew tap pkrll/tap
+$ brew install hazel --no-sandbox
+```
+
+#### Install with Make
+
+Clone this repository, and run ``make install``:
+
+```bash
+$ git clone https://github.com/pkrll/Hazel
+$ cd Hazel
+$ make install
+```
+
+This will install ``Hazel`` in ``/usr/local/bin``, along with its templates files in ``~/.hazel``.
 
 ## Usage
 
@@ -118,26 +149,7 @@ Options:
 
 ```
 
-## Installation
-
-``Hazel`` has only been tested on macOS High Sierra (10.13), so far, and is only available for download through Github.
-
-##### Prerequisites
-
-* Swift 4.0
-* Git
-
-Clone this repository, and run ``make install``:
-
-```bash
-$ git clone https://github.com/pkrll/Hazel
-$ cd Hazel
-$ make install
-```
-
-This will install ``Hazel`` in ``/usr/local/bin``, along with its templates files in ``~/.hazel``.
-
-##### Tab completion
+## Tab completion
 
 ``Hazel`` comes equipped with tab completion for ``bash`` and ``zsh``. Add the following to your startup script (``.bashrc``, ``.zshrc``, etc...) to enable tab completion:
 
