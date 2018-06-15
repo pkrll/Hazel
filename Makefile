@@ -33,14 +33,14 @@ docker:
 	docker build --tag hazel .
 	docker run --rm hazel
 
-install:
-	$(SC) build --configuration release -Xswiftc -static-stdlib
-
-configure: install
+install: build_release
 	mkdir -p $(CONFIGDIR)
 	cd .assets && cp -r templates $(CONFIGDIR)
 	cd .assets/scripts && cp -r completion $(CONFIGDIR)
 	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
+
+build_release:
+	$(SC) build --configuration release -Xswiftc -static-stdlib
 
 uninstall:
 	rm -r $(CONFIGDIR)
