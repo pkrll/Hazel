@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+_hazel_complete() {
+  COMPREPLY=()
+	local completions
+  local word="${COMP_WORDS[COMP_CWORD]}"
+  local line=(${COMP_WORDS[@]})
+	line=(${COMP_WORDS[@]:1})
+
+	if [ $COMP_CWORD -eq 1 ]
+	then
+		completions="$(hazel cmplt-bash "${line[@]}")"
+	else
+		completions="$(hazel cmplt-bash "${line[@]}" " ")"
+	fi
+
+  COMPREPLY=( $(compgen -W "$completions" -- "$word") )
+}
+
+complete -F _hazel_complete hazel

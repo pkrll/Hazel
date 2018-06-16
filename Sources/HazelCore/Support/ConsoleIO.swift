@@ -61,8 +61,8 @@ public struct ConsoleIO {
 		guard CommandLine.argc > 1 else { return }
 		let arguments = CommandLine.arguments
 
-		if arguments[1] == "cmplt" {
-			Completion().complete(arguments[2])
+		if arguments[1].hasPrefix("cmplt") {
+			Completion().complete(Array(arguments.dropFirst(2)), forBash: (arguments[1] == "cmplt-bash"))
 			exit(0)
 		} else if arguments[1] == "--completion-path" {
 			print("\(Application.Paths.configPath)/completion/init.sh")

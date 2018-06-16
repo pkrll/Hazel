@@ -8,49 +8,62 @@ import Foundation
 
 struct Completion {
 
-	func complete(_ argument: String) {
-		let arguments = Array(argument.components(separatedBy: " ").dropFirst())
+	var args = [
+		" ": [
+			"init": "Initiate a new project",
+			"--help": "Print help message and exit",
+			"-h": "Print help message and exit",
+			"--version": "Print version information and exit",
+			"-v": "Print version information and exit",
+			"--quiet": "Silent mode",
+			"-q": "Silent mode"
+		],
+		"init": [
+			"--type": "Choose template",
+			"-t": "Choose template",
+			"--help": "Print help message and exit",
+			"-h": "Print help message and exit"
+		]
+	]
+
+	func complete(_ arguments: [String], forBash isBash: Bool = false) {
 
 		guard arguments.count > 1 else {
-			if arguments[0].hasPrefix("--") {
-				self.reply("--help", "--version", "--quiet")
-			} else if arguments[0].hasPrefix("-") {
-				self.reply("-h", "-v", "-q")
-			} else {
-				self.reply("init", "--help", "--version", "--quiet")
+			for (key, value) in self.args[" "]! {
+				print( (isBash) ? key : "\(key):\(value)")
 			}
 
 			return
 		}
 
-		if arguments[0] == "init" { self.handleInit(Array(arguments[1...])) }
-	}
-
-	private func handleInit(_ arguments: [String]) {
-		switch arguments[0] {
-		case "--type", "-t":
-			guard arguments.count < 3 else { return }
-
-			let templates = Application.Paths.templatesPath
-			if let folders = try? FileManager.default.contentsOfDirectory(atPath: templates) {
-				for folder in folders where folder != "defaults" { print(folder) }
-			}
-		case "--help", "-h":
+		guard arguments[0] != "-q" else {
+			let arguments = Array(arguments.dropFirst())
+			self.complete(arguments, forBash: isBash)
 			return
-		default:
-			if arguments[0].hasPrefix("--") {
-				self.reply("--type", "--help")
-			} else if arguments[0].hasPrefix("-") {
-				self.reply("-t", "-h")
-			} else {
-				self.reply("--type", "--help")
-			}
 		}
-	}
 
-	private func reply(_ replies: String...) {
-		for string in replies {
-			print(string)
+		guard arguments.count > 2 else {
+			if let arg = self.args[arguments[0]] {
+				for (key, value) in arg {
+					print( (isBash) ? key : "\(key):\(value)")
+				}
+			}
+
+			return
+		}
+
+		if arguments[0] == "init" {
+			switch arguments[1] {
+			case "--type", "-t":
+				guard arguments.count < 4 else { return }
+
+				let templates = Application.Paths.templatesPath
+				if let folders = try? FileManager.default.contentsOfDirectory(atPath: templates) {
+					for folder in folders where folder != "defaults" { print(folder) }
+				}
+			default:
+				return
+			}
 		}
 	}
 
