@@ -19,8 +19,8 @@ struct Completion {
 			"-q": "Silent mode"
 		],
 		"init": [
-			"--type": "Choose template",
-			"-t": "Choose template",
+			"--template": "Choose project template",
+			"-t": "Choose project template",
 			"--help": "Print help message and exit",
 			"-h": "Print help message and exit"
 		]
@@ -54,7 +54,7 @@ struct Completion {
 
 		if arguments[0] == "init" {
 			switch arguments[1] {
-			case "--type", "-t":
+			case "--template", "-t":
 				guard arguments.count < 4 else { return }
 
 				let templates = Application.Paths.templatesPath

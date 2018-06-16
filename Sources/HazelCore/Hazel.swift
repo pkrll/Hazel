@@ -19,19 +19,19 @@ public struct Hazel {
 			return
 		}
 
-		var projType: String?
+		var template: String?
 		var skipConf: Bool = false
 
 		for argument in command.arguments {
 			switch argument.name {
-			case "type": projType = (argument as? StringOption)?.value
-			case "conf": skipConf = (argument as? BoolOption)?.value! ?? false
+			case "template": template = (argument as? StringOption)?.value
+			case "skipConf": skipConf = (argument as? BoolOption)?.value! ?? false
 			default: break
 			}
 		}
 
-		guard let type = projType else {
-			self.console.forceQuit(withMessage: "Project type not recognized.")
+		guard let type = template else {
+			self.console.forceQuit(withMessage: "No project template given.")
 			return
 		}
 
