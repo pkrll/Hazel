@@ -2,16 +2,18 @@
 
 _hazel_complete() {
   COMPREPLY=()
+	local completions
   local word="${COMP_WORDS[COMP_CWORD]}"
   local line=(${COMP_WORDS[@]})
-	line=(${COMP_WORDS[@]})
-	line[0]=""
-	if [ ${#line[@]} -gt 1 ]
+	line=(${COMP_WORDS[@]:1})
+
+	if [ $COMP_CWORD -eq 1 ]
 	then
-		line=(${line[@]}:1)
+		completions="$(hazel cmplt-bash "${line[@]}")"
+	else
+		completions="$(hazel cmplt-bash "${line[@]}" " ")"
 	fi
 
-  local completions="$(hazel cmplt-bash "${line[@]}")"
   COMPREPLY=( $(compgen -W "$completions" -- "$word") )
 }
 

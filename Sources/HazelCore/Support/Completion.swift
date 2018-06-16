@@ -30,12 +30,7 @@ struct Completion {
 
 		guard arguments.count > 1 else {
 			for (key, value) in self.args[" "]! {
-				if isBash {
-					print(key)
-				} else {
-					print("\(key):\(value)")
-				}
-
+				print( (isBash) ? key : "\(key):\(value)")
 			}
 
 			return
@@ -43,18 +38,14 @@ struct Completion {
 
 		guard arguments[0] != "-q" else {
 			let arguments = Array(arguments.dropFirst())
-			self.complete(arguments)
+			self.complete(arguments, forBash: isBash)
 			return
 		}
 
 		guard arguments.count > 2 else {
 			if let arg = self.args[arguments[0]] {
 				for (key, value) in arg {
-					if isBash {
-						print(key)
-					} else {
-						print("\(key):\(value)")
-					}
+					print( (isBash) ? key : "\(key):\(value)")
 				}
 			}
 
