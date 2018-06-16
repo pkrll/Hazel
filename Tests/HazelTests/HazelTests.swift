@@ -36,7 +36,7 @@ final class HazelTests: XCTestCase {
 
 	func testCProjectWithMakeAndConf() {
 		let console = ConsoleIO.default
-		let options = console.parse(["-q", "init", "--type", "c" ])
+		let options = console.parse(["-q", "init", "--template", "c" ])
 		let hazel = Hazel(console)
 
 		if options.initialize.value {
@@ -53,7 +53,7 @@ final class HazelTests: XCTestCase {
 
 	func testCProjectWithMakeNoConf() {
 		let console = ConsoleIO.default
-		let options = console.parse([ "init", "--type", "c", "--no-config" ])
+		let options = console.parse([ "init", "--template", "c", "--no-config" ])
 		let hazel = Hazel(console)
 
 		ConsoleIO.default.silentMode = true
@@ -72,7 +72,7 @@ final class HazelTests: XCTestCase {
 
 	func testSwiftProject() {
 		let console = ConsoleIO.default
-		let options = console.parse([ "init", "--type", "swift" ])
+		let options = console.parse([ "init", "--template", "swift" ])
 		let hazel = Hazel(console)
 
 		ConsoleIO.default.silentMode = true
