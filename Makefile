@@ -13,7 +13,7 @@ build:
 build_release: SWIFT_FLAGS=--configuration release -Xswiftc -static-stdlib
 build_release: build
 
-run: build
+run: build before_test
 	ln -sf $(DEBUGDIR)/Hazel hazel_debug
 	@echo ""
 	@echo "Symbolic link created."
