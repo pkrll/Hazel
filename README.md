@@ -6,7 +6,9 @@
 
 - [x] Generate project structure based on templates
 - [x] Support for macOS
-- [ ] Support for Linux
+- [ ] Confirmed support for Linux
+
+<img src=".assets/hazel.gif" width="40%" align="right">
 
 ## Table of contents
 
@@ -53,11 +55,11 @@ This will install ``Hazel`` in ``/usr/local/bin``, along with its templates file
 
 ## Usage
 
-Run ``Hazel`` inside the root folder for your project with the ``init`` command, along with the ``--type``, or ``-t``, flag to generate the directory structure and the files:
+Run ``Hazel`` inside the root folder for your project with the ``init`` command, along with the ``--template``, or ``-t``, flag to generate the directory structure and the files:
 
 ```bash
 $ mkdir SomeApp && cd SomeApp
-$ hazel init --type c
+$ hazel init --template c
 
 Created obj
 Created bin
@@ -70,8 +72,6 @@ Created tests/SomeApp_test.c
 Created src/SomeApp.c
 Created .editorconfig
 ```
-
-<img src=".assets/hazel.gif">
 
 ### Customization
 
@@ -101,11 +101,11 @@ $ tree
     └── __PROJECTNAME__.swift
 ```
 
-To generate new projects based on the above template, we can now initiate a new project of type ``swift``:
+To generate new projects based on the above template, we can now initiate a new project with template ``swift``:
 
 ```bash
 $ mkdir AwesomeApp && cd AwesomeApp
-$ hazel init --type swift
+$ hazel init --template swift
 
 Created README.md
 Created src
@@ -138,20 +138,22 @@ Commands:
 Options:
   -h, --help     Print help message and exit
   -v, --version  Print version information and exit
+  -q, --quiet    Silent mode
 ```
 ```bash
 $ hazel init --help
 Usage: hazel init [argument]
 
 Options:
-  -t, --type     Choose project type
-  -v, --version  Print version information and exit
+  -t, --template  Choose project template
+  --no-config     Do not generate .editorconfig
+  -h, --help      Print help message and exit
 
 ```
 
 ## Tab completion
 
-``Hazel`` comes equipped with tab completion for ``bash`` and ``zsh``. Add the following to your startup script (``.bashrc``, ``.zshrc``, etc...) to enable tab completion:
+``Hazel`` comes equipped with tab completion for ``bash`` and ``zsh``. If you've installed it manually (not with Homebrew), then you need to add the following to your startup script (``.bashrc``, ``.zshrc``, etc...) to enable tab completion:
 
 ```bash
 which hazel > /dev/null && . "$( hazel --completion-path )"
