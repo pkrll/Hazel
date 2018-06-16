@@ -13,12 +13,16 @@ class Generator: Generatable {
 	var defaultFiles: [String] = [".editorconfig"]
 	let templateType: String
 	let fileManager: FileManager
+
 	let projectName: String
+	let authorName: String?
+
 	var templates: String
 	var skipFiles: [String] = [".gitkeep"]
 
-	init(_ templateType: String) {
+	init(_ templateType: String, _ authorName: String? = nil) {
 		self.templateType = templateType.lowercased()
+		self.authorName = authorName
 		self.fileManager = FileManager.default
 		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
 		self.templates = Application.Paths.templatesPath
@@ -78,9 +82,7 @@ class Generator: Generatable {
 			with: self.projectName)
 
 		fileContents = try String(contentsOf: URL(fileURLWithPath: source))
-		fileContents = fileContents.replacingOccurrences(
-				of: "__PROJECTNAME__",
-			with: self.projectName)
+		fileContents = self.replacePlaceholders(fileContents)
 
 		if let fileData = fileContents.data(using: .utf8) {
 			try fileData.write(to: URL(fileURLWithPath: destination))
@@ -89,6 +91,23 @@ class Generator: Generatable {
 			ConsoleIO.default.write(message: "Could not generate \(destination)", ofType: .error)
 		}
 
+	}
+
+	private func replacePlaceholders(_ string: String) -> String {
+		var string = string
+		let values = [
+			"__PROJECTNAME__": self.projectName,
+			"__AUTHORNAME__": self.authorName,
+			"__DATE__": Date().todayPrettified()
+		]
+
+		for (placeholder, value) in values {
+			if let value = value {
+				string = string.replacingOccurrences(of: placeholder, with: value)
+			}
+		}
+
+		return string
 	}
 
 }

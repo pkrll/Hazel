@@ -13,6 +13,7 @@ public struct Arguments {
 	public let version: BoolOption
 	public let template: StringOption
 	public let skipConf: BoolOption
+	public let author: StringOption
 	public let initialize: CommandOption
 
 	public init() {
@@ -51,12 +52,20 @@ public struct Arguments {
 			description: "Do not generate .editorconfig"
 		)
 
+		self.author = StringOption(
+			name: "author",
+			shortFlag: "a",
+			longFlag: "author",
+			description: "Set author name"
+		)
+
 		self.initialize = CommandOption(
 			"init",
 			withArguments: [
 				self.template,
 				self.skipConf,
-				self.help
+				self.help,
+				self.author
 			],
 			description: "Initiate a new project"
 		)
