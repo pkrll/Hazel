@@ -26,10 +26,16 @@ struct Completion {
 		]
 	]
 
-	func complete(_ arguments: [String]) {
+	func complete(_ arguments: [String], forBash isBash: Bool = false) {
+
 		guard arguments.count > 1 else {
 			for (key, value) in self.args[" "]! {
-				print("\(key):\(value)")
+				if isBash {
+					print(key)
+				} else {
+					print("\(key):\(value)")
+				}
+
 			}
 
 			return
@@ -44,7 +50,11 @@ struct Completion {
 		guard arguments.count > 2 else {
 			if let arg = self.args[arguments[0]] {
 				for (key, value) in arg {
-					print("\(key):\(value)")
+					if isBash {
+						print(key)
+					} else {
+						print("\(key):\(value)")
+					}
 				}
 			}
 
