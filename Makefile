@@ -61,3 +61,8 @@ clean:
 	rm -rf .build/
 	rm -rf xcov_report
 	rm -f hazel_debug
+
+compress:
+	cd ../ && tar czf hazel-1.0.3.tar.gz Hazel
+	mv ../hazel-1.0.3.tar.gz .
+	shasum -a 256 hazel-1.0.3.tar.gz

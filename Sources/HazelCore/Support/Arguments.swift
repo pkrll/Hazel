@@ -11,7 +11,7 @@ public struct Arguments {
 	public let help: BoolOption
 	public let quiet: BoolOption
 	public let version: BoolOption
-	public let type: StringOption
+	public let template: StringOption
 	public let skipConf: BoolOption
 	public let initialize: CommandOption
 
@@ -37,16 +37,16 @@ public struct Arguments {
 			description: "Print version information and exit"
 		)
 
-		self.type = StringOption(
-			name: "type",
+		self.template = StringOption(
+			name: "template",
 			shortFlag: "t",
-			longFlag: "type",
-			description: "Set language for project",
+			longFlag: "template",
+			description: "Choose project template",
 			isRequired: true
 		)
 
 		self.skipConf = BoolOption(
-			name: "conf",
+			name: "skipConf",
 			longFlag: "no-config",
 			description: "Do not generate .editorconfig"
 		)
@@ -54,7 +54,7 @@ public struct Arguments {
 		self.initialize = CommandOption(
 			"init",
 			withArguments: [
-				self.type,
+				self.template,
 				self.skipConf,
 				self.help
 			],
