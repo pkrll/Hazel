@@ -1,0 +1,42 @@
+#compdef hazel
+#autoload
+
+_hazel() {
+  typeset -A opt_args
+
+  _arguments -C \
+    '1:command:->commands' \
+    '2:argument:->arguments' \
+    '*:: :->opts' \
+  && ret=0
+
+  case "$state" in
+    (commands)
+      local complete; complete=$(hazel cmplt "${line[1]}")
+      local commands; commands=(
+        ${(ps:\n:)complete}
+      )
+
+      _describe -t commands 'commands' commands && ret=0
+    ;;
+    (arguments)
+      local complete; complete=$(hazel cmplt "${line[@]}")
+      local argument; argument=(
+        ${(ps:\n:)complete}
+      )
+
+      _describe -t argument 'argument' argument && ret=0
+    ;;
+    (opts)
+      local complete; complete=$(hazel cmplt "${line[@]}")
+      local argument; argument=(
+        ${(ps:\n:)complete}
+      )
+
+      _describe -t argument 'argument' argument && ret=0
+  esac;
+
+  return 1;
+}
+
+_hazel "$@"

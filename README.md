@@ -10,6 +10,8 @@
 
 <img src=".assets/hazel.gif" width="40%" align="right">
 
+<img src=".assets/hazel.gif" width="40%" align="right">
+
 ## Table of contents
 
 * [Installation](#installation)
@@ -142,7 +144,7 @@ Options:
 ```
 ```bash
 $ hazel init --help
-Usage: hazel init [argument]
+Usage: ./hazel_debug init [argument]
 
 Options:
   -t, --template  Choose project template
