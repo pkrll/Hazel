@@ -16,15 +16,23 @@ class Generator: Generatable {
 
 	let projectName: String
 	let authorName: String?
+	let authorMail: String?
 
 	var templates: String
 	var skipFiles: [String] = [".gitkeep"]
 
-	init(_ templateType: String, _ authorName: String? = nil) {
+	init(_ templateType: String, _ projectName: String?, _ authorName: String?, _ authorMail: String?) {
 		self.templateType = templateType.lowercased()
-		self.authorName = authorName
+		self.authorName = authorName ?? ""
+		self.authorMail = authorMail ?? ""
 		self.fileManager = FileManager.default
-		self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
+
+		if let projectName = projectName {
+			self.projectName = projectName
+		} else {
+			self.projectName = URL(fileURLWithPath: fileManager.currentDirectoryPath).pathComponents.last!
+		}
+
 		self.templates = Application.Paths.templatesPath
 	}
 
@@ -98,6 +106,7 @@ class Generator: Generatable {
 		let values = [
 			"__PROJECTNAME__": self.projectName,
 			"__AUTHORNAME__": self.authorName,
+			"__AUTHORMAIL__": self.authorMail,
 			"__DATE__": Date().todayPrettified()
 		]
 

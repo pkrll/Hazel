@@ -22,12 +22,16 @@ public struct Hazel {
 		var template: String?
 		var skipConf: Bool = false
 		var author: String?
+		var email: String?
+		var name: String?
 
 		for argument in command.arguments {
 			switch argument.name {
 			case "template": template = (argument as? StringOption)?.value
 			case "skipConf": skipConf = (argument as? BoolOption)?.value! ?? false
-			case "author": author 		= (argument as? StringOption)?.value
+			case "author":     author = (argument as? StringOption)?.value
+			case "e-mail":      email = (argument as? StringOption)?.value
+			case "name":        name  = (argument as? StringOption)?.value
 			default: break
 			}
 		}
@@ -37,7 +41,7 @@ public struct Hazel {
 			return
 		}
 
-		let generator = Generator(type, author)
+		let generator = Generator(type, name, author, email)
 		if skipConf { generator.skipFiles.append(".editorconfig") }
 
 		do {
