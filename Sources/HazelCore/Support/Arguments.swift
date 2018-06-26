@@ -41,8 +41,7 @@ public struct Arguments {
 		name: "name",
 		shortFlag: "n",
 		longFlag: "name",
-		description: "Set the project name (leave empty to use the current directory name)",
-		isRequired: true
+		description: "Set the project name (leave empty to use the current directory name)"
 	)
 
 	public let skipConf = BoolOption(
