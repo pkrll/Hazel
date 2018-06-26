@@ -19,7 +19,7 @@
 * [Usage](#usage)
 	* [Customization](#customization)
 		* [Example](#example)
-		* [Placeholders](#placeholders)
+	* [Placeholders](#placeholders)
 	* [Command-line options](#command-line-options)
 * [Tab completion](#tab-completion)
 * [Acknowledgements](#acknowledgements)
@@ -113,7 +113,7 @@ Created src/AwesomeApp.c
 Created .editorconfig
 ```
 
-#### Placeholders
+### Placeholders
 
 When generating new projects, ``Hazel`` will replace all occurrences of placeholder variables in the template with appropriate values. This includes both file and directory names as well as the actual contents of the template files.
 
@@ -122,9 +122,12 @@ As of now, support exists for the following placeholders:
 | Placeholder | Description |
 | :------------- | :------------- |
 | ``__PROJECTNAME__`` | All occurrences of this placeholder will be replaced with the name of the project.       |
+| ``__AUTHORNAME__`` | All occurrences of this placeholder will be replaced with the name of the author (if set with ``-a "Name Nameson"`` or ``--author "Name Nameson"``).       |
+| ``__AUTHORMAIL__`` | All occurrences of this placeholder will be replaced with the name of the author (if set with ``-e name@example.org`` or ``--email name@example.org``).       |
+| ``__DATE__`` | All occurrences of this placeholder will be replaced with the current date.       |
 | More to come | ... |
 
-#### Commandline options
+### Commandline options
 
 Currently, ``Hazel`` offers one command.
 
@@ -139,13 +142,16 @@ Options:
   -h, --help     Print help message and exit
   -v, --version  Print version information and exit
   -q, --quiet    Silent mode
-```
-```bash
+
+
 $ hazel init --help
 Usage: hazel init [argument]
 
 Options:
-  -t, --template  Choose project template
+  -t, --template  Choose project template (required)
+  -n, --name      Set the project name (leave empty to use the current directory name)
+  -a, --author    Set author name
+  -e, --email     Set e-mail
   --no-config     Do not generate .editorconfig
   -h, --help      Print help message and exit
 
