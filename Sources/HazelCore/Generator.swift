@@ -15,8 +15,8 @@ class Generator: Generatable {
 	let fileManager: FileManager
 
 	let projectName: String
-	let authorName: String?
-	let authorMail: String?
+	let authorName: String
+	let authorMail: String
 
 	var templates: String
 	var skipFiles: [String] = [".gitkeep"]
@@ -103,17 +103,24 @@ class Generator: Generatable {
 
 	private func replacePlaceholders(_ string: String) -> String {
 		var string = string
-		let values = [
+		var values = [
 			"__PROJECTNAME__": self.projectName,
 			"__AUTHORNAME__": self.authorName,
 			"__AUTHORMAIL__": self.authorMail,
 			"__DATE__": Date().todayPrettified()
 		]
 
-		for (placeholder, value) in values {
-			if let value = value {
-				string = string.replacingOccurrences(of: placeholder, with: value)
+		if let placeholders = Placeholders.load()?.placeholders {
+			for (key, value) in placeholders {
+				let currentValue = values[key]
+				if currentValue == nil || currentValue!.count == 0 {
+					values[key] = value
+				}
 			}
+		}
+
+		for (placeholder, value) in values {
+			string = string.replacingOccurrences(of: placeholder, with: value)
 		}
 
 		return string
