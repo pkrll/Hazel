@@ -115,7 +115,7 @@ Created .editorconfig
 
 ### Placeholders
 
-When generating new projects, ``Hazel`` will replace all occurrences of placeholder variables in the template with appropriate values. This includes both file and directory names as well as the actual contents of the template files.
+When generating new projects, ``Hazel`` will replace all occurrences of certain placeholder variables in the template files with appropriate values. This includes both file and directory names as well as the actual contents of the template files.
 
 As of now, support exists for the following placeholders:
 
@@ -125,7 +125,6 @@ As of now, support exists for the following placeholders:
 | ``__AUTHORNAME__`` | All occurrences of this placeholder will be replaced with the name of the author (if set with ``-a "Name Nameson"`` or ``--author "Name Nameson"``).       |
 | ``__AUTHORMAIL__`` | All occurrences of this placeholder will be replaced with the name of the author (if set with ``-e name@example.org`` or ``--email name@example.org``).       |
 | ``__DATE__`` | All occurrences of this placeholder will be replaced with the current date.       |
-| More to come | ... |
 
 ### Commandline options
 
