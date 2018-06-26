@@ -1,4 +1,4 @@
-.PHONY: build_release build run before_test after_test test codecov docker install uninstall clean
+.PHONY: build_release build run before_test after_test test xcodeproj codecov docker install uninstall clean
 SC=swift
 
 CONFIGDIR=~/.hazel
@@ -21,11 +21,12 @@ run: build before_test
 	@echo ""
 
 before_test:
-	@echo "\033[0;32mCreating folder /tmp/hazel"
+	@echo "\033[0;32mCreating folder /tmp/hazel\033[0;0m"
 	@mkdir -p /tmp/hazel
-	@echo "Copying templates file to /tmp/hazel"
+	@echo "\033[0;32mCopying templates file to /tmp/hazel\033[0;0m"
 	@cd .assets && cp -r templates /tmp/hazel
-	@echo "\033[0;0m"
+	@echo "\033[0;32mCopying other settings to /tmp/hazel\033[0;0m"
+	@cd .assets && cp -f placeholders.json /tmp/hazel/
 
 after_test:
 	@echo "\033[0;32m"
@@ -38,6 +39,9 @@ test: before_test
 	$(SC) test $(SWIFT_FLAGS)
 	@echo "\033[0;33m===============================================================\033[0;0m"
 	@$(MAKE) after_test
+
+xcodeproj:
+	swift package generate-xcodeproj
 
 codecov: before_test
 	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration Debug "OTHER_SWIFT_FLAGS=-DDEBUG"
@@ -61,6 +65,7 @@ clean:
 	rm -rf .build/
 	rm -rf xcov_report
 	rm -f hazel_debug
+	rm -rf /tmp/hazel
 
 compress:
 	cd ../ && tar czf hazel-1.0.3.tar.gz Hazel
