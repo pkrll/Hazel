@@ -76,6 +76,7 @@ clean:
 	rm -rf /tmp/hazel
 	rm -f /usr/local/bin/hazel_debug
 	rm -f /usr/local/share/zsh/site-functions/_hazel_debug
+
 compress:
 	cd ../ && tar czf hazel-1.0.3.tar.gz Hazel
 	mv ../hazel-1.0.3.tar.gz .
