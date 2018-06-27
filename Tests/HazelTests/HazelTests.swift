@@ -12,6 +12,7 @@ final class HazelTests: XCTestCase {
 		("testCProjectWithMakeAndConf", testCProjectWithMakeAndConf),
 		("testCProjectWithMakeNoConf", testCProjectWithMakeNoConf),
 		("testSwiftProject", testSwiftProject),
+		("testSwiftProjectWithArguments", testSwiftProjectWithArguments),
 		("testError", testError)
 	]
 
@@ -91,8 +92,30 @@ final class HazelTests: XCTestCase {
 		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/LinuxMain.swift"))
 	}
 
+	func testSwiftProjectWithArguments() {
+		let appName = "SomeCoolApp"
+		let console = ConsoleIO.default
+		let options = console.parse([ "init", "--template", "swift", "-n", appName, "-a", "Test McTestson" ])
+		let hazel = Hazel(console)
+
+		ConsoleIO.default.silentMode = true
+
+		if options.initialize.value {
+			hazel.initialize(options.initialize)
+		}
+
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(appName)"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Sources/\(appName)/\(appName).swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(appName)Tests"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(appName)Tests/\(appName)Tests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/\(appName)Tests/XCTestManifests.swift"))
+		XCTAssertTrue(fileManager.fileExists(atPath: "Tests/LinuxMain.swift"))
+	}
+
 	func testError() {
-		let generator = Generator("yahoo")
+		let generator = Generator("yahoo", nil, nil, nil)
 
 		do {
 			try generator.prepare()

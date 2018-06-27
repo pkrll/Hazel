@@ -1,4 +1,4 @@
-.PHONY: build_release build run before_test after_test test codecov docker install uninstall clean
+.PHONY: build_release build run before_test after_test test xcodeproj codecov docker install uninstall clean
 SC=swift
 
 CONFIGDIR=~/.hazel
@@ -13,19 +13,28 @@ build:
 build_release: SWIFT_FLAGS=--configuration release -Xswiftc -static-stdlib
 build_release: build
 
-run: build
+run: build before_test
 	ln -sf $(DEBUGDIR)/Hazel hazel_debug
 	@echo ""
 	@echo "Symbolic link created."
 	@echo "Usage: \033[0;31m./hazel_debug\033[0;0m <\033[0;33mcommand\033[0;0m> <\033[0;33margument\033[0;0m>"
 	@echo ""
 
+debug: build before_test
+	cp -i $(DEBUGDIR)/Hazel /usr/local/bin/hazel_debug
+	cp -i .assets/scripts/completion/zsh/_hazel /usr/local/share/zsh/site-functions/_hazel_debug
+	@echo ""
+	@echo "Symbolic link created in /usr/local/bin."
+	@echo "Usage: \033[0;31mhazel_debug\033[0;0m <\033[0;33mcommand\033[0;0m> <\033[0;33margument\033[0;0m>"
+	@echo ""
+
 before_test:
-	@echo "\033[0;32mCreating folder /tmp/hazel"
+	@echo "\033[0;32mCreating folder /tmp/hazel\033[0;0m"
 	@mkdir -p /tmp/hazel
-	@echo "Copying templates file to /tmp/hazel"
+	@echo "\033[0;32mCopying templates file to /tmp/hazel\033[0;0m"
 	@cd .assets && cp -r templates /tmp/hazel
-	@echo "\033[0;0m"
+	@echo "\033[0;32mCopying other settings to /tmp/hazel\033[0;0m"
+	@cd .assets && cp -f placeholders.json /tmp/hazel/
 
 after_test:
 	@echo "\033[0;32m"
@@ -38,6 +47,9 @@ test: before_test
 	$(SC) test $(SWIFT_FLAGS)
 	@echo "\033[0;33m===============================================================\033[0;0m"
 	@$(MAKE) after_test
+
+xcodeproj:
+	swift package generate-xcodeproj
 
 codecov: before_test
 	xcodebuild test -scheme Hazel-Package -enableCodeCoverage YES -configuration Debug "OTHER_SWIFT_FLAGS=-DDEBUG"
@@ -61,6 +73,9 @@ clean:
 	rm -rf .build/
 	rm -rf xcov_report
 	rm -f hazel_debug
+	rm -rf /tmp/hazel
+	rm -f /usr/local/bin/hazel_debug
+	rm -f /usr/local/share/zsh/site-functions/_hazel_debug
 
 compress:
 	cd ../ && tar czf hazel-1.0.3.tar.gz Hazel

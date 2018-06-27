@@ -20,6 +20,7 @@
 	* [Customization](#customization)
 		* [Example](#example)
 		* [Placeholders](#placeholders)
+			* [Custom placeholders](#custom-placeholders)
 	* [Command-line options](#command-line-options)
 * [Tab completion](#tab-completion)
 * [Acknowledgements](#acknowledgements)
@@ -115,16 +116,31 @@ Created .editorconfig
 
 #### Placeholders
 
-When generating new projects, ``Hazel`` will replace all occurrences of placeholder variables in the template with appropriate values. This includes both file and directory names as well as the actual contents of the template files.
+When generating new projects, ``Hazel`` will replace all occurrences of certain placeholder variables in the template files with appropriate values. This includes both file and directory names as well as the actual contents of the template files.
 
-As of now, support exists for the following placeholders:
+As of now, built-in support exists for the placeholders shown below, but more can be added manually in the file ``~/.hazel/placeholders.json``.
 
 | Placeholder | Description |
 | :------------- | :------------- |
 | ``__PROJECTNAME__`` | All occurrences of this placeholder will be replaced with the name of the project.       |
-| More to come | ... |
+| ``__AUTHORNAME__`` | All occurrences of this placeholder will be replaced with the name of the author (default value set in ``placeholders.json`` will be overridden if flags ``-a "Name Nameson"`` or ``--author "Name Nameson"`` are present).       |
+| ``__AUTHORMAIL__`` | All occurrences of this placeholder will be replaced with the name of the author (default value set in ``placeholders.json`` will be overridden if flag ``-e name@example.org`` or ``--email name@example.org`` are present).       |
+| ``__DATE__`` | All occurrences of this placeholder will be replaced with the current date.       |
 
-#### Commandline options
+##### Custom placeholders
+
+To add custom placeholders (or add default values for ``__AUTHORNAME__`` or ``__AUTHORMAIL__``), simply edit the file ``placeholders.json`` located in ``~/.hazel``:
+
+```json
+{
+	"__AUTHORNAME__": "Dave Grohl",
+	"__AUTHORMAIL__": "david@grohlson.com",
+	"__LICENSE__": "MIT",
+	"FOO": "BAR!"
+}
+```
+
+### Commandline options
 
 Currently, ``Hazel`` offers one command.
 
@@ -139,13 +155,16 @@ Options:
   -h, --help     Print help message and exit
   -v, --version  Print version information and exit
   -q, --quiet    Silent mode
-```
-```bash
+
+
 $ hazel init --help
 Usage: hazel init [argument]
 
 Options:
-  -t, --template  Choose project template
+  -t, --template  Choose project template (required)
+  -n, --name      Set the project name (leave empty to use the current directory name)
+  -a, --author    Set author name
+  -e, --email     Set e-mail
   --no-config     Do not generate .editorconfig
   -h, --help      Print help message and exit
 

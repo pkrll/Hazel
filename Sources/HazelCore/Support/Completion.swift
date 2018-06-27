@@ -22,7 +22,11 @@ struct Completion {
 			"--template": "Choose project template",
 			"-t": "Choose project template",
 			"--help": "Print help message and exit",
-			"-h": "Print help message and exit"
+			"-h": "Print help message and exit",
+			"--author": "Set author name",
+			"-a": "Set author name",
+			"--email": "Set author e-mail",
+			"-e": "Set author e-mail"
 		]
 	]
 
@@ -53,17 +57,44 @@ struct Completion {
 		}
 
 		if arguments[0] == "init" {
-			switch arguments[1] {
-			case "--template", "-t":
-				guard arguments.count < 4 else { return }
+			let lastArgument = arguments[arguments.count - 2]
 
+			switch lastArgument {
+			case "--template", "-t":
 				let templates = Application.Paths.templatesPath
 				if let folders = try? FileManager.default.contentsOfDirectory(atPath: templates) {
 					for folder in folders where folder != "defaults" { print(folder) }
 				}
+			case "--author", "-a":
+				if let placeholders = Placeholders.load()?.placeholders, let authorName = placeholders["__AUTHORNAME__"] {
+					print("\"\(authorName)\"")
+				} else {
+					print("\"\"")
+				}
+			case "--email", "-e":
+				if let placeholders = Placeholders.load()?.placeholders, let authorMail = placeholders["__AUTHORMAIL__"] {
+					print("\"\(authorMail)\"")
+				} else {
+					print("\"\"")
+				}
 			default:
-				return
+				for (key, value) in self.args[arguments[0]]! where argument(key, isUnusedIn: arguments) {
+					print( (isBash) ? key : "\(key):\(value)")
+				}
 			}
+		}
+	}
+
+	func argument(_ argument: String, isUnusedIn arguments: [String]) -> Bool {
+		switch argument {
+		case "--template", "-t":
+			return !arguments.contains("--template") && !arguments.contains("-t")
+		case "--author", "-a":
+			return !arguments.contains("--author") && !arguments.contains("-a")
+		case "--email", "-e":
+			return !arguments.contains("--email") && !arguments.contains("-e")
+		default:
+			return true
 		}
 	}
 
