@@ -22,6 +22,7 @@ run: build before_test
 
 debug: build before_test
 	cp -i $(DEBUGDIR)/Hazel /usr/local/bin/hazel_debug
+	cp -i .assets/scripts/completion/zsh/_hazel /usr/local/share/zsh/site-functions/_hazel_debug
 	@echo ""
 	@echo "Symbolic link created in /usr/local/bin."
 	@echo "Usage: \033[0;31mhazel_debug\033[0;0m <\033[0;33mcommand\033[0;0m> <\033[0;33margument\033[0;0m>"
@@ -73,7 +74,8 @@ clean:
 	rm -rf xcov_report
 	rm -f hazel_debug
 	rm -rf /tmp/hazel
-
+	rm -f /usr/local/bin/hazel_debug
+	rm -f /usr/local/share/zsh/site-functions/_hazel_debug
 compress:
 	cd ../ && tar czf hazel-1.0.3.tar.gz Hazel
 	mv ../hazel-1.0.3.tar.gz .
