@@ -20,6 +20,13 @@ run: build before_test
 	@echo "Usage: \033[0;31m./hazel_debug\033[0;0m <\033[0;33mcommand\033[0;0m> <\033[0;33margument\033[0;0m>"
 	@echo ""
 
+debug: build before_test
+	cp -i $(DEBUGDIR)/Hazel /usr/local/bin/hazel_debug
+	@echo ""
+	@echo "Symbolic link created in /usr/local/bin."
+	@echo "Usage: \033[0;31mhazel_debug\033[0;0m <\033[0;33mcommand\033[0;0m> <\033[0;33margument\033[0;0m>"
+	@echo ""
+
 before_test:
 	@echo "\033[0;32mCreating folder /tmp/hazel\033[0;0m"
 	@mkdir -p /tmp/hazel
