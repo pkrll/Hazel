@@ -124,7 +124,7 @@ As of now, built-in support exists for the placeholders shown below, but more ca
 | :------------- | :------------- |
 | ``__PROJECTNAME__`` | All occurrences of this placeholder will be replaced with the name of the project.       |
 | ``__AUTHORNAME__`` | All occurrences of this placeholder will be replaced with the name of the author (default value set in ``placeholders.json`` will be overridden if flags ``-a "Name Nameson"`` or ``--author "Name Nameson"`` are present).       |
-| ``__AUTHORMAIL__`` | All occurrences of this placeholder will be replaced with the name of the author (default value set in ``placeholders.json`` will be overridden if flag ``-e name@example.org`` or ``--email name@example.org`` are present).       |
+| ``__AUTHORMAIL__`` | All occurrences of this placeholder will be replaced with the e-mail of the author (default value set in ``placeholders.json`` will be overridden if flag ``-e name@example.org`` or ``--email name@example.org`` are present).       |
 | ``__DATE__`` | All occurrences of this placeholder will be replaced with the current date.       |
 
 ##### Custom placeholders
