@@ -78,7 +78,7 @@ Created .editorconfig
 
 ``Hazel`` generates new projects based on predefined templates, placed in ``~/.hazel/templates``. You can add your own templates by simply creating a desired directory structure, along with the files you want to be automatically generated, in a subdirectory to ``~/.hazel/templates``.
 
-The name of the subdirectory will serve as the name of the project.
+The name of the subdirectory will serve as the name of the template.
 
 #### Example
 
