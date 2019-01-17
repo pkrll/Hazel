@@ -27,7 +27,7 @@
 
 ## Installation
 
-``Hazel`` has only been tested on macOS High Sierra (10.13).
+``Hazel`` has been tested on macOS High Sierra (10.13) and Mojave (10.14).
 
 #### Prerequisites
 
