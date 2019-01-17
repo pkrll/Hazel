@@ -64,7 +64,7 @@ install: build_release
 	cd .assets && cp -r templates $(CONFIGDIR)
 	cd .assets/scripts && cp -r completion $(CONFIGDIR)
 	cd .assets && cp -f placeholders.json $(CONFIGDIR)
-	cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
+	sudo cp -f $(RELEASEDIR)/Hazel $(BINARYDIR)/hazel
 
 uninstall:
 	rm -r $(CONFIGDIR)
