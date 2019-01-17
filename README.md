@@ -6,7 +6,7 @@
 
 - [x] Generate project structure based on templates
 - [x] Support for macOS
-- [ ] Confirmed support for Linux
+- [x] Support for Linux (tested on Raspbian Stretch Lite)
 
 <img src=".assets/hazel.gif" width="40%" align="right">
 
