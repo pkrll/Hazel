@@ -68,7 +68,7 @@ install: build_release
 
 uninstall:
 	rm -r $(CONFIGDIR)
-	rm $(BINARYDIR)/hazel
+	sudo rm $(BINARYDIR)/hazel
 
 clean:
 	rm -rf .build/
