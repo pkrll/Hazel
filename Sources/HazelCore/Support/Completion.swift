@@ -20,7 +20,9 @@ struct Completion {
 		],
 		"init": [
 			"--template": "Choose project template",
-			"-t": "Choose project template",
+			"-t": "Set the project name (leave empty to use the current directory name)",
+			"--name": "Set the project name (leave empty to use the current directory name)",
+			"-n": "Choose project template",
 			"--help": "Print help message and exit",
 			"-h": "Print help message and exit",
 			"--author": "Set author name",
@@ -89,6 +91,8 @@ struct Completion {
 		switch argument {
 		case "--template", "-t":
 			return !arguments.contains("--template") && !arguments.contains("-t")
+		case "--name", "-n":
+			return !arguments.contains("--name") && !arguments.contains("-n")
 		case "--author", "-a":
 			return !arguments.contains("--author") && !arguments.contains("-a")
 		case "--email", "-e":
