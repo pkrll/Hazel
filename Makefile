@@ -1,6 +1,6 @@
 .PHONY: build_release build run before_test after_test test xcodeproj codecov docker install uninstall clean
 SC=swift
-
+VERSION=1.1.1
 CONFIGDIR=~/.hazel
 BINARYDIR=/usr/local/bin
 RELEASEDIR=.build/release
@@ -10,7 +10,7 @@ SWIFT_FLAGS=--configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
 build:
 	$(SC) build $(SWIFT_FLAGS)
 
-build_release: SWIFT_FLAGS=--configuration release -Xswiftc -static-stdlib
+build_release: SWIFT_FLAGS=--disable-sandbox --configuration release -Xswiftc -static-stdlib
 build_release: build
 
 run: build before_test
@@ -79,6 +79,6 @@ clean:
 	rm -f /usr/local/share/zsh/site-functions/_hazel_debug
 
 compress:
-	cd ../ && tar czf hazel-1.0.3.tar.gz Hazel
-	mv ../hazel-1.0.3.tar.gz .
-	shasum -a 256 hazel-1.0.3.tar.gz
+	cd ../ && tar czf hazel-$(VERSION).tar.gz Hazel
+	mv ../hazel-$(VERSION).tar.gz .
+	shasum -a 256 hazel-$(VERSION).tar.gz
