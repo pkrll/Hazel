@@ -26,7 +26,6 @@
 * [Acknowledgements](#acknowledgements)
 
 ## Installation
-
 ``Hazel`` has been tested on macOS High Sierra (10.13) and Mojave (10.14).
 
 #### Prerequisites
@@ -34,6 +33,7 @@
 * Swift 4.0
 
 #### Install with Homebrew
+**This is currently not working, as of Homebrew 2.0.0. Please install with Make, instead.**
 
 Tap into my personal repository of ``Homebrew`` formulas, and install using the ``--no-sandbox`` flag.
 
