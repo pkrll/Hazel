@@ -7,7 +7,7 @@ let package = Package(
 	name: "Hazel",
 	dependencies: [
 		.package(url: "https://github.com/onevcat/Rainbow", from: "3.0.0"),
-		.package(url: "https://github.com/pkrll/SwiftArgs", from: "0.5.0")
+		.package(url: "https://github.com/pkrll/SwiftArgs", from: "0.5.5")
 	],
 	targets: [
 		.target(
