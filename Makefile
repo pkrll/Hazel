@@ -10,7 +10,7 @@ SWIFT_FLAGS=--configuration debug -Xswiftc "-D" -Xswiftc "DEBUG"
 build:
 	$(SC) build $(SWIFT_FLAGS)
 
-build_release: SWIFT_FLAGS=--disable-sandbox --configuration release -Xswiftc -static-stdlib
+build_release: SWIFT_FLAGS=--disable-sandbox --static-swift-stdlib -c release
 build_release: build
 
 run: build before_test
